@@ -4,13 +4,12 @@
 #
 .DS_STORE
 .idea/
-./NAVPH-FILIP/Library/
-./NAVPH-FILIP/Temp/
-./NAVPH-FILIP/obj/
-./NAVPH-FILIP/Build/
-./NAVPH-FILIP/Logs/
-./NAVPH-FILIP/Builds/
-./NAVPH-FILIP/UserSettings/
+/NAVPH-FILIP/Temp/
+/NAVPH-FILIP/obj/
+/NAVPH-FILIP/Build/
+/NAVPH-FILIP/Logs/
+/NAVPH-FILIP/Builds/
+/NAVPH-FILIP/UserSettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
