@@ -15,22 +15,22 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         //nevola sa rovnako ako update
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             _rigidbody2D.velocity = new Vector2(speed.x, _rigidbody2D.velocity.y);
         }
         
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             _rigidbody2D.velocity = new Vector2(-speed.x, _rigidbody2D.velocity.y);
         }
         
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
         }
         
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -speed.y);
         }
