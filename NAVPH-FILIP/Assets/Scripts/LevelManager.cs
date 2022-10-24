@@ -7,11 +7,12 @@ public class LevelManager : MonoBehaviour
 {
     public Player player;
     public GameObject levelContainer;
+    public Transform playerSpawnPosition;
 
     void Start()
     {
         Debug.Log("x = " + levelContainer.transform.position.x);
-        player = Instantiate(player, new Vector2(0, 0), 
+        player = Instantiate(player, playerSpawnPosition.position, 
             Quaternion.identity, levelContainer.transform);
     }
 }
