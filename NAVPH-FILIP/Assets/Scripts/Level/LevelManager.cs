@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,5 +12,10 @@ public class LevelManager : MonoBehaviour
         Debug.Log("x = " + levelContainer.transform.position.x);
         player = Instantiate(player, playerSpawnPosition.position, 
             Quaternion.identity, levelContainer.transform);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
