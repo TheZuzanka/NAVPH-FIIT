@@ -6,23 +6,25 @@ public class LevelManager : MonoBehaviour
 {
     public Player player;
     public GameObject levelContainer;
-    public Transform playerSpawnPosition;
-    public List<Heart> hearts; 
-
-    void Start()
-    {
-        Debug.Log("x = " + levelContainer.transform.position.x);
-        player = Instantiate(player, playerSpawnPosition.position, 
-            Quaternion.identity, levelContainer.transform);
-
-        foreach (var heart in hearts)
-        {
-            heart.SetPlayer(player);
-        }
-    }
-
+    public List<Heart> hearts;
+    public GameObject heartSpawner1;
+    public GameObject heartSpawner2;
+    public FullHeart heart;
+    
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void DrawHeart()
+    {
+        if (player.GetHearts() == 1)
+        {
+            Instantiate(heart, new Vector2(0, 0), Quaternion.identity, heartSpawner2.transform);
+        }
+        else if (player.GetHearts() == 0)
+        {
+            Instantiate(heart, new Vector2(0, 0), Quaternion.identity, heartSpawner1.transform);
+        }
     }
 }

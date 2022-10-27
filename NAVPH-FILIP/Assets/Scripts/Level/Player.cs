@@ -8,10 +8,11 @@ public class Player : MonoBehaviour
     public Vector2 speed;
     private Rigidbody2D _rigidbody2D;
     private int _hearts;
+    public LevelManager levelManager;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _hearts = 2;
+        _hearts = 1;
     }
 
     private void FixedUpdate()
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
 
     public void AddHeart()
     {
+        levelManager.DrawHeart();
         _hearts += 1;
     }
 }
