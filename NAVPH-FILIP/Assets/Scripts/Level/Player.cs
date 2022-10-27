@@ -7,9 +7,11 @@ public class Player : MonoBehaviour
 {
     public Vector2 speed;
     private Rigidbody2D _rigidbody2D;
+    private int _hearts;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _hearts = 2;
     }
 
     private void FixedUpdate()
@@ -34,5 +36,15 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -speed.y);
         }
+    }
+
+    public int GetHearts()
+    {
+        return _hearts;
+    }
+
+    public void AddHeart()
+    {
+        _hearts += 1;
     }
 }

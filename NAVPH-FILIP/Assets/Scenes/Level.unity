@@ -963,6 +963,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8656392078561427272, guid: 882120563e5ae1440a46f64a5d08743e, type: 3}
   m_PrefabInstance: {fileID: 1444871976}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1444871979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8791521121841067533, guid: 882120563e5ae1440a46f64a5d08743e, type: 3}
+  m_PrefabInstance: {fileID: 1444871976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379c9b4dfdebe24479406d295d6faeac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1706090819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1250,8 @@ MonoBehaviour:
   player: {fileID: 1160136321102312243, guid: 30eb922f4a971464189f28b69c683b2f, type: 3}
   levelContainer: {fileID: 1983318421}
   playerSpawnPosition: {fileID: 1706090820}
+  hearts:
+  - {fileID: 1444871979}
 --- !u!1 &2030947242
 GameObject:
   m_ObjectHideFlags: 0
