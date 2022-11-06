@@ -2,8 +2,8 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-.DS_STORE
-.idea/
+NAVPH-FILIP/.DS_STORE
+NAVPH-FILIP/.idea/
 NAVPH-FILIP/Temp/
 NAVPH-FILIP/obj/
 NAVPH-FILIP/Build/
