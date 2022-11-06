@@ -49,4 +49,11 @@ public class Player : MonoBehaviour
         levelManager.DrawHeart();
         _hearts += 1;
     }
+
+    public void RemoveHeart()
+    {
+        Debug.Log("Heart Removed");
+    }
+
+  
 }
