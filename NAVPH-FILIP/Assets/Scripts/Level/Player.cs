@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private int _hearts;
     public LevelManager levelManager;
+    public int score;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _hearts = 1;
+        score = 0;
     }
 
     private void FixedUpdate()

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +12,13 @@ public class LevelManager : MonoBehaviour
     public GameObject heartSpawner1;
     public GameObject heartSpawner2;
     public FullHeart heart;
-    
+    public TextMeshProUGUI score;
+
+    public void Start()
+    {
+        score.text = "Score: " + player.score;
+    }
+
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
