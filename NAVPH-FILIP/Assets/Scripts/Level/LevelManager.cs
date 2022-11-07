@@ -47,7 +47,9 @@ public class LevelManager : MonoBehaviour
         {
             ReturnToMainMenu();
         }
-        
-        Destroy(hearts[^1].GameObject());
+        else
+        {
+            Destroy(hearts[^1].GameObject());
+        }
     }
 }
