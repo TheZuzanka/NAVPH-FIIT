@@ -980,7 +980,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5583177757368623261, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
       propertyPath: m_Name
-      value: Heart Icon Full Variant
+      value: Heart1
       objectReference: {fileID: 0}
     - target: {fileID: 7805949810842496778, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
       propertyPath: m_RootOrder
@@ -1415,17 +1415,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8656392078561427272, guid: 882120563e5ae1440a46f64a5d08743e, type: 3}
   m_PrefabInstance: {fileID: 1444871976}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1444871979 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8791521121841067533, guid: 882120563e5ae1440a46f64a5d08743e, type: 3}
-  m_PrefabInstance: {fileID: 1444871976}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 379c9b4dfdebe24479406d295d6faeac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1474425476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1620,7 +1609,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5583177757368623261, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
       propertyPath: m_Name
-      value: Heart Icon Full Variant
+      value: Heart2
       objectReference: {fileID: 0}
     - target: {fileID: 7805949810842496778, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
       propertyPath: m_RootOrder
@@ -1673,6 +1662,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7805949810842496778, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
   m_PrefabInstance: {fileID: 1836434447}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1836434449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387623357252001697, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
+  m_PrefabInstance: {fileID: 1836434447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa010a312e8c7741a38a5430f8e207a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1933004911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1984,7 +1984,8 @@ MonoBehaviour:
   player: {fileID: 367839529}
   levelContainer: {fileID: 1983318421}
   hearts:
-  - {fileID: 1444871979}
+  - {fileID: 2051445823}
+  - {fileID: 1836434449}
   heartSpawner1: {fileID: 1422256420}
   heartSpawner2: {fileID: 1437470691}
   heart: {fileID: 387623357252001697, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
@@ -2068,6 +2069,17 @@ Transform:
   m_Father: {fileID: 1983318422}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2051445823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387623357252001697, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
+  m_PrefabInstance: {fileID: 739014983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa010a312e8c7741a38a5430f8e207a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2088427749
 GameObject:
   m_ObjectHideFlags: 0
