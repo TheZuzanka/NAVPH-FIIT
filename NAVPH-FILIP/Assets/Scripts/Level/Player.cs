@@ -48,13 +48,18 @@ public class Player : MonoBehaviour
 
     public void AddHeart()
     {
-        levelManager.DrawHeart();
-        _hearts += 1;
+        if (_hearts < 2)
+        {
+            levelManager.DrawHeart();
+            _hearts += 1;
+        }
     }
 
     public void RemoveHeart()
     {
-        Debug.Log("Heart Removed");
+        Debug.Log($"Heart Removed, remaining = {_hearts - 1}");
+        _hearts -= 1;
+        levelManager.DestroyHeart();
     }
 
   
