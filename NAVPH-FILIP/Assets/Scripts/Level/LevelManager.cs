@@ -28,11 +28,13 @@ public class LevelManager : MonoBehaviour
     {
         if (player.GetHearts() == 1)
         {
-            Instantiate(heart, new Vector2(0, 0), Quaternion.identity, heartSpawner2.transform);
+            Instantiate(heart, new Vector2(heartSpawner2.transform.position.x, 
+                heartSpawner2.transform.position.y), Quaternion.identity, heartSpawner2.transform);
         }
         else if (player.GetHearts() == 0)
         {
-            Instantiate(heart, new Vector2(0, 0), Quaternion.identity, heartSpawner1.transform);
+            Instantiate(heart, new Vector2(heartSpawner1.transform.position.x, 
+                heartSpawner1.transform.position.y), Quaternion.identity, heartSpawner1.transform);
         }
     }
 }

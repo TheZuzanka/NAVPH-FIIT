@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _hearts = 1;
+        _hearts = 2;
         score = 0;
     }
 
