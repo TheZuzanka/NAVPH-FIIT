@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
         score = 0;
     }
 
-    private void FixedUpdate()
+    private void CheckIfNotFallen()
     {
         if (transform.position.y < levelManager.toKillY)
         {
@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
                 RemoveHeart();
             }
         }
+    }
 
-        //nevola sa rovnako ako update
+    private void Move()
+    {
         if (Input.GetKey(KeyCode.D))
         {
             _rigidbody2D.velocity = new Vector2(speed.x, _rigidbody2D.velocity.y);
@@ -45,6 +47,15 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -speed.y);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        //nevola sa rovnako ako update
+        
+        CheckIfNotFallen();
+        
+        Move();
     }
 
     public int GetHearts()
