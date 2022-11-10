@@ -30,14 +30,29 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
-        float moveUnit = enemySpeed * Time.deltaTime;
-        float moveX = Vector2.MoveTowards(transform.position,
-                    player.transform.position, enemySpeed * Time.deltaTime).x;
-        float moveY = transform.position.y;
+        float currentPosistionX = transform.position.x;
 
-        if (((moveX + moveUnit) > leftBoundaryX) && ((moveX + moveUnit) < rightBoundaryX))
+
+
+        float moveX = Vector2.MoveTowards(transform.position,
+                player.transform.position, enemySpeed*Time.deltaTime).x;
+
+        // Inside boundaries
+        if (moveX > leftBoundaryX && moveX < rightBoundaryX)
         {
-            transform.position = new Vector2(moveX, moveY);
+            transform.position = new Vector2(moveX, transform.position.y);
+        }
+
+        // Move right from left boudary
+        else if (currentPosistionX <= leftBoundaryX && (moveX > currentPosistionX))
+        {
+            transform.position = new Vector2(moveX, transform.position.y);
+        }
+
+        // Move left from right boudary
+        else if (currentPosistionX >= rightBoundaryX && (moveX < currentPosistionX))
+        {
+            transform.position = new Vector2(moveX, transform.position.y);
         }
     }
 
@@ -50,11 +65,9 @@ public class Enemy : MonoBehaviour
         // has passed since previous FX object spawn
         if (distanceFromPlayer <= hostileDistance)
         {
-            if ((transform.position.x > leftBoundaryX) && (transform.position.x < rightBoundaryX))
-            {
-                Move();
-            }
-
+       
+            Move();
+  
             if (timePassed >= spawnInterval)
             {
                 // Set vector that will point FX object towards player
