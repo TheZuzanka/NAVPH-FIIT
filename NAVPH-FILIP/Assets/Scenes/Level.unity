@@ -2438,7 +2438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7468432924491295753, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.44
+      value: 3.63
       objectReference: {fileID: 0}
     - target: {fileID: 7468432924491295753, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2481,8 +2481,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 247225175}
     - target: {fileID: 8547585330261581688, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
+      propertyPath: enemySpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547585330261581688, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
       propertyPath: throwForce
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547585330261581688, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
+      propertyPath: spawnInterval
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
