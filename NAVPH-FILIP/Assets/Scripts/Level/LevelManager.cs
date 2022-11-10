@@ -8,10 +8,12 @@ public class LevelManager : MonoBehaviour
     public FullHeart heart1;
     public FullHeart heart2;
     public TextMeshProUGUI score;
+    public float toKillY;
 
     public void Start()
     {
         score.text = "Score: " + player.score;
+        toKillY = -6;
     }
 
     public void ReturnToMainMenu()

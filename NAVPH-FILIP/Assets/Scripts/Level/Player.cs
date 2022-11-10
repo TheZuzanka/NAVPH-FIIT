@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,6 +16,15 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (transform.position.y < levelManager.toKillY)
+        {
+            //levelManager.ReturnToMainMenu();
+
+            for (int i = 0; i < _hearts; i++) {
+                RemoveHeart();
+            }
+        }
+
         //nevola sa rovnako ako update
         if (Input.GetKey(KeyCode.D))
         {
