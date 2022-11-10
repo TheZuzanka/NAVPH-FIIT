@@ -1982,13 +1982,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 367839529}
-  levelContainer: {fileID: 1983318421}
-  hearts:
-  - {fileID: 2051445823}
-  - {fileID: 1836434449}
-  heartSpawner1: {fileID: 1422256420}
-  heartSpawner2: {fileID: 1437470691}
-  heart: {fileID: 387623357252001697, guid: 471e72457b5786b47ab765d0226e4429, type: 3}
+  heart1: {fileID: 2051445823}
+  heart2: {fileID: 1836434449}
   score: {fileID: 1942233285}
 --- !u!1 &2030947242
 GameObject:
