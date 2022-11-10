@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private int _hearts;
     public LevelManager levelManager;
     public int score;
+
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -20,7 +21,8 @@ public class Player : MonoBehaviour
         {
             //levelManager.ReturnToMainMenu();
 
-            for (int i = 0; i < _hearts; i++) {
+            for (int i = 0; i < _hearts; i++)
+            {
                 RemoveHeart();
             }
         }
@@ -32,29 +34,32 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = new Vector2(speed.x, _rigidbody2D.velocity.y);
         }
-        
+
         else if (Input.GetKey(KeyCode.A))
         {
             _rigidbody2D.velocity = new Vector2(-speed.x, _rigidbody2D.velocity.y);
         }
-        
+
         if (Input.GetKey(KeyCode.W))
         {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
-        }
-        
-        else if (Input.GetKey(KeyCode.S))
-        {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -speed.y);
+            RaycastHit2D hit = Physics2D.Raycast(
+                new Vector2(transform.position.x, (float) (transform.position.y - 0.5)),
+                Vector2.down, (float) 0.1);
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("ground")){
+                    _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
+                }
+            }
         }
     }
 
     private void FixedUpdate()
     {
         //nevola sa rovnako ako update
-        
+
         CheckIfNotFallen();
-        
+
         Move();
     }
 
@@ -78,6 +83,4 @@ public class Player : MonoBehaviour
         _hearts -= 1;
         levelManager.DestroyHeart();
     }
-
-  
 }
