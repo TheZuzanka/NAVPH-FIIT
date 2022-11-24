@@ -39,7 +39,6 @@ public class Mark : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log(mark);
             switch (mark)
             { 
                 case "FX":

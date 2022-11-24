@@ -479,7 +479,7 @@ MonoBehaviour:
   hostileDistance: 10
   enemySpeed: 1.5
   FX: {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
-  throwForce: 15
+  throwForce: 10
   spawnInterval: 1
 --- !u!1 &3327444970514424669
 GameObject:
