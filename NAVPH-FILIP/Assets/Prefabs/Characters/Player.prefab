@@ -303,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: {x: 3, y: 5}
   levelManager: {fileID: 0}
+  score: 0
 --- !u!50 &5480960809803412496
 Rigidbody2D:
   serializedVersion: 4

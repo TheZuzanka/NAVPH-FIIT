@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - FX
   - ground
+  - Mark
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - FX
+  - Mark
   - 
   - 
   - 

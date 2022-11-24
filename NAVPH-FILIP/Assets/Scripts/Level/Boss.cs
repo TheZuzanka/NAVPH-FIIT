@@ -1,73 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Enemy : MonoBehaviour
+public class Boss : MonoBehaviour
 {
-
-    public Transform setLeftBoundary;
-    private float leftBoundaryX;
-    public Transform setRightBoundary;
-    private float rightBoundaryX;
-
     public GameObject player;
     public float hostileDistance = 10.0f;
-    public float enemySpeed = 2.0f;
-
+    
     public GameObject FX;
     public float throwForce = 20.0f;
 
     public float spawnInterval = 1.0f;
     private float timePassed = 0.0f;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        leftBoundaryX = setLeftBoundary.position.x;
-        rightBoundaryX = setRightBoundary.position.x;
-    }
-
-    private void Move()
-    {
-        float currentPosistionX = transform.position.x;
-
-
-
-        float moveX = Vector2.MoveTowards(transform.position,
-                player.transform.position, enemySpeed*Time.deltaTime).x;
-
-        // Inside boundaries
-        if (moveX > leftBoundaryX && moveX < rightBoundaryX)
-        {
-            transform.position = new Vector2(moveX, transform.position.y);
-        }
-
-        // Move right from left boudary
-        else if (currentPosistionX <= leftBoundaryX && (moveX > currentPosistionX))
-        {
-            transform.position = new Vector2(moveX, transform.position.y);
-        }
-
-        // Move left from right boudary
-        else if (currentPosistionX >= rightBoundaryX && (moveX < currentPosistionX))
-        {
-            transform.position = new Vector2(moveX, transform.position.y);
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-
         // Create new FX object if player is in hostileDistance and time set in spawnInterval
         // has passed since previous FX object spawn
         if (distanceFromPlayer <= hostileDistance)
         {
-       
-            Move();
-  
+
             if (timePassed >= spawnInterval)
             {
                 // Set vector that will point FX object towards player
@@ -76,7 +37,6 @@ public class Enemy : MonoBehaviour
                 fromEnemyToPlayer.Normalize();
 
                 GameObject newFX = Instantiate(FX, fxPosition, Quaternion.identity);
-                newFX.GetComponent<Mark>().SetMark("FX");
 
                 // fire FX object towards player
                 newFX.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
@@ -89,13 +49,5 @@ public class Enemy : MonoBehaviour
         }
 
         timePassed += Time.deltaTime;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
     }
 }

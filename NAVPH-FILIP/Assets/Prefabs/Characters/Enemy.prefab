@@ -475,11 +475,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setLeftBoundary: {fileID: 5778937197928883764}
   setRightBoundary: {fileID: 7216563972046764817}
-  player: {fileID: 8386484842564390880, guid: 30eb922f4a971464189f28b69c683b2f, type: 3}
+  player: {fileID: 0}
   hostileDistance: 10
   enemySpeed: 1.5
-  FX: {fileID: 4577969862007931471, guid: d38375fa085e0d6458302132f402670d, type: 3}
-  throwForce: 20
+  FX: {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
+  throwForce: 15
   spawnInterval: 1
 --- !u!1 &3327444970514424669
 GameObject:
