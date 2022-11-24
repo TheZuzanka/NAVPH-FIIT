@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,14 @@ public class LevelManager : MonoBehaviour
     public FullHeart heart2;
     public TextMeshProUGUI score;
     public float toKillY;
+
+    public void Update()
+    {
+        if (player.transform.position.x >= Camera.main.transform.position.x)
+        {
+            Camera.main.transform.position += new Vector3(10, 0, 0);
+        }
+    }
 
     public void Start()
     {
