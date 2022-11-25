@@ -1,13 +1,14 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public Player player;
-    public TextMeshProUGUI score;
-    public float toKillY;
+    [SerializeField] private Player player;
+    [SerializeField] private TextMeshProUGUI score;
+    
+    // public = player accesses this attribute
+    public float toKillY = -6;
 
     public void Update()
     {
@@ -20,7 +21,6 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         score.text = "Score: " + player.score;
-        toKillY = -6;
     }
 
     public void ReturnToMainMenu()

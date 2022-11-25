@@ -2961,7 +2961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 367839529}
   score: {fileID: 1942233285}
-  toKillY: 0
+  toKillY: -6
 --- !u!1001 &1988808364
 PrefabInstance:
   m_ObjectHideFlags: 0
