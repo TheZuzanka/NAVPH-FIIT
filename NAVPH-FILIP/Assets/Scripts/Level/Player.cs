@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 speed;
-    
+    [SerializeField] private Vector2 speed;
+
     private Rigidbody2D _rigidbody2D;
-    
-    [SerializeField]
-    private int hearts;
-    
-    [SerializeField]
-    private LevelManager levelManager;
+
+    [SerializeField] private int hearts;
+
+    [SerializeField] private LevelManager levelManager;
+
+    [SerializeField] private float touchTheGroundThreshold = 0.35f;
 
     public int score;
 
@@ -26,8 +25,6 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < levelManager.toKillY)
         {
-            //levelManager.ReturnToMainMenu();
-
             for (int i = 0; i < hearts; i++)
             {
                 RemoveHeart();
@@ -49,12 +46,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            RaycastHit2D hit = Physics2D.Raycast(
-                new Vector2(transform.position.x, (float) (transform.position.y - 0.5)),
-                Vector2.down, (float) 0.1);
-            if (hit.collider != null)
+            RaycastHit2D[] allHits = Physics2D.RaycastAll(transform.position,
+                Vector2.down, touchTheGroundThreshold);
+
+            if (allHits.Length > 1)
             {
-                if (hit.collider.CompareTag("ground")){
+                // we hit something else than player's own collider
+                RaycastHit2D firstHitNotPlayer = allHits[1];
+
+                // if hit is the ground, player can jump (player cannot jump when not standing on
+                // the ground)
+                if (firstHitNotPlayer.collider.CompareTag("ground"))
+                {
                     _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
                 }
             }
