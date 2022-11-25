@@ -1211,6 +1211,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8547585330261581688, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
+      propertyPath: spawnInterval
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547585330261581688, guid: ff11ba552e50bc94e9fc76c0c8f7d233, type: 3}
       propertyPath: hostileDistance
       value: 10
       objectReference: {fileID: 0}
