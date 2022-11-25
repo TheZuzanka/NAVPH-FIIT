@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LevelManager levelManager;
 
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
+
+    [SerializeField] private List<GameObject> heartsObjects;
 
     public int score;
 
@@ -66,31 +69,48 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //nevola sa rovnako ako update
-
         CheckIfNotFallen();
 
         Move();
     }
 
-    public int GetHearts()
+    private void DisplayHearts()
     {
-        return hearts;
+        for (int i = 0; i < heartsObjects.Count; i++)
+        {
+            if (i < hearts)
+            {
+                heartsObjects[i].SetActive(true);
+            }
+            else
+            {
+                heartsObjects[i].SetActive(false);
+            }
+        }
     }
 
     public void AddHeart()
     {
+        // public = when player collects heart this method is called
+        
         if (hearts < 2)
         {
-            levelManager.DrawHeart();
             hearts += 1;
+            DisplayHearts();
         }
     }
 
     public void RemoveHeart()
     {
-        Debug.Log($"Heart Removed, remaining = {hearts - 1}");
+        // public = when player collects FX this method is called
+        
         hearts -= 1;
-        levelManager.DestroyHeart();
+        Debug.Log($"Heart Removed, remaining = {hearts}");
+        DisplayHearts();
+
+        if (hearts == 0)
+        {
+            levelManager.ReturnToMainMenu();
+        }
     }
 }
