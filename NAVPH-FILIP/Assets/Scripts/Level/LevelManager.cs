@@ -18,9 +18,14 @@ public class LevelManager : MonoBehaviour
 
     public void Update()
     {
-        if (player.transform.position.x >= Camera.main.transform.position.x)
+        Vector3 screenPosOfPlayer = Camera.main.WorldToScreenPoint(player.transform.position);
+        if (screenPosOfPlayer.x < 0)
         {
-            Camera.main.transform.position += new Vector3(10, 0, 0);
+            Camera.main.transform.position -= new Vector3(20, 0, 0);
+        } 
+        else if (screenPosOfPlayer.x > Screen.width)
+        {
+            Camera.main.transform.position += new Vector3(20, 0, 0);
         }
     }
 
