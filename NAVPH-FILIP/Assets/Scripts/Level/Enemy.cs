@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public Transform setRightBoundary;
     private float rightBoundaryX;
 
-    public GameObject player;
+    public Player player;
     public float hostileDistance = 10.0f;
     public float enemySpeed = 2.0f;
 
@@ -20,12 +20,16 @@ public class Enemy : MonoBehaviour
 
     public float spawnInterval = 1.0f;
     private float timePassed = 0.0f;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         leftBoundaryX = setLeftBoundary.position.x;
         rightBoundaryX = setRightBoundary.position.x;
+    }
+
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
     }
 
     private void Move()

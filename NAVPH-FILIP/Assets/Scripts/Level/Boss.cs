@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public GameObject player;
+    public Player player;
     public float hostileDistance = 10.0f;
     
     public GameObject FX;
@@ -13,11 +13,9 @@ public class Boss : MonoBehaviour
     public float spawnInterval = 1.0f;
     private float timePassed = 0.0f;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void SetPlayer(Player player)
     {
-        
+        this.player = player;
     }
 
     // Update is called once per frame

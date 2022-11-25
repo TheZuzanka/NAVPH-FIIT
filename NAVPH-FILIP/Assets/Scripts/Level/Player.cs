@@ -1,27 +1,56 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2 speed;
+    [SerializeField] private Vector2 speed;
+
     private Rigidbody2D _rigidbody2D;
-    private int _hearts;
-    public LevelManager levelManager;
+
+    [SerializeField] private int hearts;
+
+    [SerializeField] private LevelManager levelManager;
+
+    [SerializeField] private float touchTheGroundThreshold = 0.35f;
+
+    [SerializeField] private List<GameObject> heartsObjects;
+
     public int score;
 
-    void Start()
+    private void SetPlayerAsReference()
     {
+        levelManager.boss.SetPlayer(this);
+
+        foreach (var enemy in levelManager.enemies)
+        {
+            enemy.SetPlayer(this);
+        }
+    }
+
+    public void SetPlayersAttributesFromScene(LevelManager levelManager, 
+        List<GameObject> heartsObjects)
+    {
+        // public = levelManager uses this method when player is spawned to set references
+        
+        this.levelManager = levelManager;
+        this.heartsObjects = heartsObjects;
+    }
+
+    private void Start()
+    {
+
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _hearts = 2;
+        hearts = 2;
         score = 0;
+        SetPlayerAsReference();
     }
 
     private void CheckIfNotFallen()
     {
         if (transform.position.y < levelManager.toKillY)
         {
-            //levelManager.ReturnToMainMenu();
-
-            for (int i = 0; i < _hearts; i++)
+            for (int i = 0; i < hearts; i++)
             {
                 RemoveHeart();
             }
@@ -42,12 +71,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            RaycastHit2D hit = Physics2D.Raycast(
-                new Vector2(transform.position.x, (float) (transform.position.y - 0.5)),
-                Vector2.down, (float) 0.1);
-            if (hit.collider != null)
+            RaycastHit2D[] allHits = Physics2D.RaycastAll(transform.position,
+                Vector2.down, touchTheGroundThreshold);
+
+            if (allHits.Length > 1)
             {
-                if (hit.collider.CompareTag("ground")){
+                // we hit something else than player's own collider
+                RaycastHit2D firstHitNotPlayer = allHits[1];
+
+                // if hit is the ground, player can jump (player cannot jump when not standing on
+                // the ground)
+                if (firstHitNotPlayer.collider.CompareTag("ground"))
+                {
                     _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
                 }
             }
@@ -56,31 +91,48 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //nevola sa rovnako ako update
-
         CheckIfNotFallen();
 
         Move();
     }
 
-    public int GetHearts()
+    private void DisplayHearts()
     {
-        return _hearts;
+        for (int i = 0; i < heartsObjects.Count; i++)
+        {
+            if (i < hearts)
+            {
+                heartsObjects[i].SetActive(true);
+            }
+            else
+            {
+                heartsObjects[i].SetActive(false);
+            }
+        }
     }
 
     public void AddHeart()
     {
-        if (_hearts < 2)
+        // public = when player collects heart this method is called
+
+        if (hearts < 2)
         {
-            levelManager.DrawHeart();
-            _hearts += 1;
+            hearts += 1;
+            DisplayHearts();
         }
     }
 
     public void RemoveHeart()
     {
-        Debug.Log($"Heart Removed, remaining = {_hearts - 1}");
-        _hearts -= 1;
-        levelManager.DestroyHeart();
+        // public = when player collects FX this method is called
+
+        hearts -= 1;
+        Debug.Log($"Heart Removed, remaining = {hearts}");
+        DisplayHearts();
+
+        if (hearts == 0)
+        {
+            levelManager.ReturnToMainMenu();
+        }
     }
 }

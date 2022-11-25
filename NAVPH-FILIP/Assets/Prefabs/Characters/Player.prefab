@@ -302,7 +302,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 3, y: 5}
+  hearts: 0
   levelManager: {fileID: 0}
+  touchTheGroundThreshold: 0.35
+  heartsObjects: []
   score: 0
 --- !u!50 &5480960809803412496
 Rigidbody2D:

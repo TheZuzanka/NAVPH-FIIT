@@ -1,61 +1,51 @@
-using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public Player player;
-    public FullHeart heart1;
-    public FullHeart heart2;
-    public TextMeshProUGUI score;
-    public float toKillY;
+    [SerializeField] private Player player;
+    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private Transform levelContainer;
+    
+    // public = player sets self as reference when spawned
+    public List<Enemy> enemies;
+    public Boss boss;
+
+    // public = player accesses this attribute
+    public float toKillY = -6;
 
     public void Update()
     {
-        if (player.transform.position.x >= Camera.main.transform.position.x)
+        Vector3 screenPosOfPlayer = Camera.main.WorldToScreenPoint(player.transform.position);
+        if (screenPosOfPlayer.x < 0)
         {
-            Camera.main.transform.position += new Vector3(10, 0, 0);
+            Camera.main.transform.position -= new Vector3(20, 0, 0);
+        } 
+        else if (screenPosOfPlayer.x > Screen.width)
+        {
+            Camera.main.transform.position += new Vector3(20, 0, 0);
         }
     }
 
     public void Start()
     {
+        player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
+
+        List<GameObject> hearts = new List<GameObject>();
+        var foundHearts = FindObjectsOfType<FullHeart>();
+        foreach (var heart in foundHearts)
+        {
+            hearts.Add(heart.gameObject);
+        }
+        
+        player.SetPlayersAttributesFromScene(this, hearts);
         score.text = "Score: " + player.score;
-        toKillY = -6;
     }
 
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void DrawHeart()
-    {
-        if (player.GetHearts() == 1)
-        {
-            heart2.gameObject.SetActive(true);
-        }
-        else if (player.GetHearts() == 0)
-        {
-            heart1.gameObject.SetActive(true);
-        }
-    }
-
-    public void DestroyHeart()
-    {
-        switch (player.GetHearts())
-        {
-            case 0:
-                ReturnToMainMenu();
-                break;
-                
-            case 1: 
-                heart2.gameObject.SetActive(false);
-                break;
-            case 2:
-                heart1.gameObject.SetActive(false);
-                break;
-        }
     }
 }
