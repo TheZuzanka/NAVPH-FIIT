@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2 speed;
+    [SerializeField]
+    private Vector2 speed;
+    
     private Rigidbody2D _rigidbody2D;
-    private int _hearts;
-    public LevelManager levelManager;
+    
+    [SerializeField]
+    private int hearts;
+    
+    [SerializeField]
+    private LevelManager levelManager;
+
     public int score;
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _hearts = 2;
+        hearts = 2;
         score = 0;
     }
 
@@ -21,7 +28,7 @@ public class Player : MonoBehaviour
         {
             //levelManager.ReturnToMainMenu();
 
-            for (int i = 0; i < _hearts; i++)
+            for (int i = 0; i < hearts; i++)
             {
                 RemoveHeart();
             }
@@ -65,22 +72,22 @@ public class Player : MonoBehaviour
 
     public int GetHearts()
     {
-        return _hearts;
+        return hearts;
     }
 
     public void AddHeart()
     {
-        if (_hearts < 2)
+        if (hearts < 2)
         {
             levelManager.DrawHeart();
-            _hearts += 1;
+            hearts += 1;
         }
     }
 
     public void RemoveHeart()
     {
-        Debug.Log($"Heart Removed, remaining = {_hearts - 1}");
-        _hearts -= 1;
+        Debug.Log($"Heart Removed, remaining = {hearts - 1}");
+        hearts -= 1;
         levelManager.DestroyHeart();
     }
 }
