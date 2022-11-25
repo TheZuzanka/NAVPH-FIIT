@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,11 +18,32 @@ public class Player : MonoBehaviour
 
     public int score;
 
-    void Start()
+    private void SetPlayerAsReference()
     {
+        levelManager.boss.SetPlayer(this);
+
+        foreach (var enemy in levelManager.enemies)
+        {
+            enemy.SetPlayer(this);
+        }
+    }
+
+    public void SetPlayersAttributesFromScene(LevelManager levelManager, 
+        List<GameObject> heartsObjects)
+    {
+        // public = levelManager uses this method when player is spawned to set references
+        
+        this.levelManager = levelManager;
+        this.heartsObjects = heartsObjects;
+    }
+
+    private void Start()
+    {
+
         _rigidbody2D = GetComponent<Rigidbody2D>();
         hearts = 2;
         score = 0;
+        SetPlayerAsReference();
     }
 
     private void CheckIfNotFallen()
@@ -92,7 +114,7 @@ public class Player : MonoBehaviour
     public void AddHeart()
     {
         // public = when player collects heart this method is called
-        
+
         if (hearts < 2)
         {
             hearts += 1;
@@ -103,7 +125,7 @@ public class Player : MonoBehaviour
     public void RemoveHeart()
     {
         // public = when player collects FX this method is called
-        
+
         hearts -= 1;
         Debug.Log($"Heart Removed, remaining = {hearts}");
         DisplayHearts();
