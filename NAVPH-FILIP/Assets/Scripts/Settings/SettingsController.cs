@@ -8,7 +8,7 @@ public class SettingsController : MonoBehaviour
     {
         // this method is called when hover over tooltip
 
-        GameObject tooltip = button.transform.Find("Tooltip").gameObject;
+        GameObject tooltip = button.transform.Find("Image/Tooltip").gameObject;
         tooltip.SetActive(true);
     }
 
@@ -16,7 +16,7 @@ public class SettingsController : MonoBehaviour
     {
         // this method is called when no hover over tooltip
 
-        GameObject tooltip = button.transform.Find("Tooltip").gameObject;
+        GameObject tooltip = button.transform.Find("Image/Tooltip").gameObject;
         tooltip.SetActive(false);
     }
 
