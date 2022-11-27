@@ -9,7 +9,7 @@ public class SettingsController : MonoBehaviour
     [SerializeField] private Attribute selectedAttribute;
     private Button _selectedButton;
 
-    public enum Attribute
+    private enum Attribute
     {
         Fitness,
         Logical,
@@ -19,7 +19,7 @@ public class SettingsController : MonoBehaviour
 
     public void DisplayTooltip(Button button)
     {
-        // this method is called when hover over tooltip
+        // this method is called when hover over tooltip (event trigger - Pointer Enter)
 
         GameObject tooltip = button.transform.Find("Image/Tooltip").gameObject;
         tooltip.SetActive(true);
@@ -27,7 +27,7 @@ public class SettingsController : MonoBehaviour
 
     public void HideTooltip(Button button)
     {
-        // this method is called when no hover over tooltip
+        // this method is called when no hover over tooltip (event trigger - Pointer xit)
 
         GameObject tooltip = button.transform.Find("Image/Tooltip").gameObject;
         tooltip.SetActive(false);
@@ -35,6 +35,8 @@ public class SettingsController : MonoBehaviour
 
     private void RemovePreviousSelection()
     {
+        // removes visual highlight from previously selected button
+        
         if (_selectedButton == null)
         {
             return;
@@ -54,6 +56,7 @@ public class SettingsController : MonoBehaviour
     public void SetAsSelected(string attribute)
     {
         // this method is called when attribute is selected
+        // method does not appear if String and Button as parameters (??)
 
         RemovePreviousSelection();
 
@@ -67,8 +70,10 @@ public class SettingsController : MonoBehaviour
 
     private void SetAttributesToDefault()
     {
+        // sets attributes to values when no attribute was selected
+        
         Settings.Settings.SpeedMultiplier = 1f;
-        Settings.Settings.FxFrequencyMultiplier = 1f;
+        Settings.Settings.FxTimeIntervalMultiplier = 1f;
         Settings.Settings.MaxHearts = 2;
     }
     private void SetSuperSpeedAttribute()
@@ -78,10 +83,10 @@ public class SettingsController : MonoBehaviour
 
     private void SetLowerFxFrequencyAttribute()
     {
-        Settings.Settings.FxFrequencyMultiplier = 1.5f;
+        Settings.Settings.FxTimeIntervalMultiplier = 1.5f;
     }
 
-    private void SetExtraHeart()
+    private void AddExtraHeart()
     {
         Settings.Settings.MaxHearts = 3;
     }
@@ -103,7 +108,7 @@ public class SettingsController : MonoBehaviour
                 SetLowerFxFrequencyAttribute();
                 break;
             case Attribute.Heart:
-                SetExtraHeart();
+                AddExtraHeart();
                 break;
         }
         
