@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3735275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 980388266}
+        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
+        m_MethodName: SaveAttributes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3735275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +556,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: fitness
+          m_StringArgument: Fitness
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 980388266}
@@ -1045,7 +1057,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: logical
+          m_StringArgument: Logical
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 980388266}
@@ -2698,7 +2710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e668b75c0c9b4334bb673118e4d566ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedAttribute: 
+  selectedAttribute: 0
 --- !u!1 &1038137614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,7 +3008,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: coffee
+          m_StringArgument: Coffee
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 980388266}
@@ -4397,7 +4409,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: heart
+          m_StringArgument: Heart
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 980388266}

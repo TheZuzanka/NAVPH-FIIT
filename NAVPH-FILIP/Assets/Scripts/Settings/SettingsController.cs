@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
-    [SerializeField]private string selectedAttribute;
+    [SerializeField] private Attribute selectedAttribute;
     private Button _selectedButton;
+
+    public enum Attribute
+    {
+        Fitness,
+        Logical,
+        Heart,
+        Coffee
+    }
+
     public void DisplayTooltip(Button button)
     {
         // this method is called when hover over tooltip
@@ -29,28 +38,60 @@ public class SettingsController : MonoBehaviour
         {
             return;
         }
+
         _selectedButton.GetComponent<Image>().enabled = false;
     }
 
     public void Highlight(Button button)
     {
+        // this method is called when attribute is selected
+
         _selectedButton = button;
         _selectedButton.GetComponent<Image>().enabled = true;
     }
-    public void SetAsSelected(string attribute)
-    {
-        RemovePreviousSelection();
-        
-        selectedAttribute = attribute;
-    }
 
-    private void SetSuperSpeedAttribute()
+    public void SetAsSelected(Attribute attribute)
     {
-        Settings.Settings.SpeedMultiplier = 1.5f;
+        // this method is called when attribute is selected
+
+        RemovePreviousSelection();
+
+        selectedAttribute = attribute;
     }
 
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void SetAttributesToDefault()
+    {
+        Settings.Settings.SpeedMultiplier = 1f;
+    }
+    private void SetSuperSpeedAttribute()
+    {
+        Settings.Settings.SpeedMultiplier = 1.5f;
+    }
+
+    public void SaveAttributes()
+    {
+        // this method is used on save settings
+        
+        SetAttributesToDefault();
+
+        switch (selectedAttribute)
+        {
+            case Attribute.Fitness:
+                SetSuperSpeedAttribute();
+                break;
+            case Attribute.Coffee:
+                break;
+            case Attribute.Logical:
+                break;
+            case Attribute.Heart:
+                break;
+        }
+        
+        ReturnToMainMenu();
     }
 }
