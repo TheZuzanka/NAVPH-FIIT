@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
             hearts.Add(heart.gameObject);
         }
         
+        // list is reversed so hearts decrease from the end of list
         hearts.Reverse();
         
         player.SetPlayersAttributesFromScene(this, hearts);
