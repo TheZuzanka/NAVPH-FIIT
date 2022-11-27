@@ -99,8 +99,8 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(speed.x * Settings.Settings.SpeedMultiplier,
-            speed.y * Settings.Settings.SpeedMultiplier);
+        speed = new(3 * Settings.Settings.SpeedMultiplier,
+            5 * Settings.Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()
