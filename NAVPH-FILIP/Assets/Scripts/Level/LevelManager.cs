@@ -36,10 +36,14 @@ public class LevelManager : MonoBehaviour
         
         List<GameObject> hearts = new List<GameObject>();
         var foundHearts = FindObjectsOfType<FullHeart>();
+        
         foreach (var heart in foundHearts)
         {
             hearts.Add(heart.gameObject);
         }
+        
+        // list is reversed so hearts decrease from the end of list
+        hearts.Reverse();
         
         player.SetPlayersAttributesFromScene(this, hearts);
         score.text = "Score: " + player.score;

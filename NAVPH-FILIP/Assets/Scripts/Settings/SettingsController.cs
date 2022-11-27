@@ -69,6 +69,7 @@ public class SettingsController : MonoBehaviour
     {
         Settings.Settings.SpeedMultiplier = 1f;
         Settings.Settings.FxFrequencyMultiplier = 1f;
+        Settings.Settings.MaxHearts = 2;
     }
     private void SetSuperSpeedAttribute()
     {
@@ -78,6 +79,11 @@ public class SettingsController : MonoBehaviour
     private void SetLowerFxFrequencyAttribute()
     {
         Settings.Settings.FxFrequencyMultiplier = 1.5f;
+    }
+
+    private void SetExtraHeart()
+    {
+        Settings.Settings.MaxHearts = 3;
     }
 
     public void SaveAttributes()
@@ -97,6 +103,7 @@ public class SettingsController : MonoBehaviour
                 SetLowerFxFrequencyAttribute();
                 break;
             case Attribute.Heart:
+                SetExtraHeart();
                 break;
         }
         

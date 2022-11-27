@@ -40,7 +40,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        hearts = 2;
+        hearts = Settings.Settings.MaxHearts;
+        DisplayHearts();
         score = 0;
         SetSpeed();
         SetPlayerAsReference();
