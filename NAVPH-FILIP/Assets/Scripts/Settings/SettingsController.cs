@@ -78,7 +78,7 @@ public class SettingsController : MonoBehaviour
     }
     private void SetSuperSpeedAttribute()
     {
-        Settings.Settings.SpeedMultiplier = 1.5f;
+        Settings.Settings.SpeedMultiplier = 1.25f;
     }
 
     private void SetLowerFxFrequencyAttribute()

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
 
-    [SerializeField] private int hearts;
+    [SerializeField] private int currentHearts;
 
     [SerializeField] private LevelManager levelManager;
 
@@ -35,14 +35,17 @@ public class Player : MonoBehaviour
         this.levelManager = levelManager;
         this.heartsObjects = heartsObjects;
     }
-    
+
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        hearts = Settings.Settings.MaxHearts;
+        // max hearts depends on whether the player has the sweetheart trait selected
+        currentHearts = Settings.Settings.MaxHearts;
         DisplayHearts();
+
         score = 0;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+
         SetSpeed();
         SetPlayerAsReference();
     }
@@ -51,7 +54,8 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < levelManager.toKillY)
         {
-            for (int i = 0; i < hearts; i++)
+            // remove all hearts when player falls from platform
+            for (int i = 0; i < currentHearts; i++)
             {
                 RemoveHeart();
             }
@@ -72,6 +76,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
+            // player can jump only when standing on the platform
+
             RaycastHit2D[] allHits = Physics2D.RaycastAll(transform.position,
                 Vector2.down, touchTheGroundThreshold);
 
@@ -80,8 +86,7 @@ public class Player : MonoBehaviour
                 // we hit something else than player's own collider
                 RaycastHit2D firstHitNotPlayer = allHits[1];
 
-                // if hit is the ground, player can jump (player cannot jump when not standing on
-                // the ground)
+                // if hit is the ground, player can jump
                 if (firstHitNotPlayer.collider.CompareTag("ground"))
                 {
                     _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
@@ -92,8 +97,10 @@ public class Player : MonoBehaviour
 
     public void SetSpeed()
     {
-        speed = new(3 * Settings.Settings.SpeedMultiplier,
-            5 * Settings.Settings.SpeedMultiplier);
+        // speed depends on whether the player has the fitness trait selected
+        
+        speed = new(speed.x * Settings.Settings.SpeedMultiplier,
+            speed.y * Settings.Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()
@@ -107,7 +114,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < heartsObjects.Count; i++)
         {
-            if (i < hearts)
+            if (i < currentHearts)
             {
                 heartsObjects[i].SetActive(true);
             }
@@ -122,9 +129,9 @@ public class Player : MonoBehaviour
     {
         // public = when player collects heart this method is called
 
-        if (hearts < 2)
+        if (currentHearts < 2)
         {
-            hearts += 1;
+            currentHearts += 1;
             DisplayHearts();
         }
     }
@@ -133,11 +140,11 @@ public class Player : MonoBehaviour
     {
         // public = when player collects FX this method is called
 
-        hearts -= 1;
-        Debug.Log($"Heart Removed, remaining = {hearts}");
+        currentHearts -= 1;
+        Debug.Log($"Heart Removed, remaining = {currentHearts}");
         DisplayHearts();
 
-        if (hearts == 0)
+        if (currentHearts == 0)
         {
             levelManager.ReturnToMainMenu();
         }
