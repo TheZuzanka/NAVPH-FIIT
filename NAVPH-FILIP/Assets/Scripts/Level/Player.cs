@@ -35,14 +35,14 @@ public class Player : MonoBehaviour
         this.levelManager = levelManager;
         this.heartsObjects = heartsObjects;
     }
+    
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         hearts = 2;
         score = 0;
-        speed = new(3 * Settings.Settings.SpeedMultiplier,
-            5 * Settings.Settings.SpeedMultiplier);
+        SetSpeed();
         SetPlayerAsReference();
     }
 
@@ -87,6 +87,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetSpeed()
+    {
+        speed = new(3 * Settings.Settings.SpeedMultiplier,
+            5 * Settings.Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()

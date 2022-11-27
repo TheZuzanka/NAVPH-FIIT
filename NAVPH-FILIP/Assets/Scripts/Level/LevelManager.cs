@@ -32,7 +32,8 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
-
+        player.SetSpeed();
+        
         List<GameObject> hearts = new List<GameObject>();
         var foundHearts = FindObjectsOfType<FullHeart>();
         foreach (var heart in foundHearts)

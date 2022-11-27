@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -50,13 +51,13 @@ public class SettingsController : MonoBehaviour
         _selectedButton.GetComponent<Image>().enabled = true;
     }
 
-    public void SetAsSelected(Attribute attribute)
+    public void SetAsSelected(string attribute)
     {
         // this method is called when attribute is selected
 
         RemovePreviousSelection();
 
-        selectedAttribute = attribute;
+        selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), attribute);
     }
 
     public void ReturnToMainMenu()
@@ -67,10 +68,16 @@ public class SettingsController : MonoBehaviour
     private void SetAttributesToDefault()
     {
         Settings.Settings.SpeedMultiplier = 1f;
+        Settings.Settings.FxFrequencyMultiplier = 1f;
     }
     private void SetSuperSpeedAttribute()
     {
         Settings.Settings.SpeedMultiplier = 1.5f;
+    }
+
+    private void SetLowerFxFrequencyAttribute()
+    {
+        Settings.Settings.FxFrequencyMultiplier = 1.5f;
     }
 
     public void SaveAttributes()
@@ -87,6 +94,7 @@ public class SettingsController : MonoBehaviour
             case Attribute.Coffee:
                 break;
             case Attribute.Logical:
+                SetLowerFxFrequencyAttribute();
                 break;
             case Attribute.Heart:
                 break;

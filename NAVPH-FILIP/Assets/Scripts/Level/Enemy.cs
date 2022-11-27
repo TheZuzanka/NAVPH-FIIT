@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,13 +15,14 @@ public class Enemy : MonoBehaviour
     public GameObject FX;
     public float throwForce = 20.0f;
 
-    public float spawnInterval = 1.0f;
+    public float spawnInterval;
     private float timePassed = 0.0f;
     
     void Start()
     {
         leftBoundaryX = setLeftBoundary.position.x;
         rightBoundaryX = setRightBoundary.position.x;
+        spawnInterval = 3.0f * Settings.Settings.FxFrequencyMultiplier;
     }
 
     public void SetPlayer(Player player)
