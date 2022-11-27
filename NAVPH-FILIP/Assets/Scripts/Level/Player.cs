@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        hearts = 2;
+        hearts = 3;
         score = 0;
         SetSpeed();
         SetPlayerAsReference();
