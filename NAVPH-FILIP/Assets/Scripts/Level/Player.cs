@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -28,21 +27,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetPlayersAttributesFromScene(LevelManager levelManager, 
+    public void SetPlayersAttributesFromScene(LevelManager levelManager,
         List<GameObject> heartsObjects)
     {
         // public = levelManager uses this method when player is spawned to set references
-        
+
         this.levelManager = levelManager;
         this.heartsObjects = heartsObjects;
     }
 
     private void Start()
     {
-
         _rigidbody2D = GetComponent<Rigidbody2D>();
         hearts = 2;
         score = 0;
+        speed = new(3 * Settings.Settings.SpeedMultiplier,
+            5 * Settings.Settings.SpeedMultiplier);
         SetPlayerAsReference();
     }
 
