@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
@@ -17,5 +18,10 @@ public class SettingsController : MonoBehaviour
 
         GameObject tooltip = button.transform.Find("Tooltip").gameObject;
         tooltip.SetActive(false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
