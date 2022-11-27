@@ -16,23 +16,33 @@ public class LevelManager : MonoBehaviour
     // public = player accesses this attribute
     public float toKillY = -6;
 
-    public void Update()
+    private void MoveCameraWhenPlayerNotInViewport()
     {
-        Vector3 screenPosOfPlayer = Camera.main.WorldToScreenPoint(player.transform.position);
-        if (screenPosOfPlayer.x < 0)
+        Vector3 screenPositionOfPlayer = Camera.main.WorldToScreenPoint(player.transform.position);
+        if (screenPositionOfPlayer.x < 0)
         {
+            // player is off the left boundary
+            
             Camera.main.transform.position -= new Vector3(20, 0, 0);
         } 
-        else if (screenPosOfPlayer.x > Screen.width)
+        else if (screenPositionOfPlayer.x > Screen.width)
         {
+            // player is off the right boundary
+            
             Camera.main.transform.position += new Vector3(20, 0, 0);
         }
+    }
+
+    public void Update()
+    {
+        MoveCameraWhenPlayerNotInViewport();
     }
 
     public void Start()
     {
         player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
         player.SetSpeed();
+        score.text = "Score: " + player.score;
         
         List<GameObject> hearts = new List<GameObject>();
         var foundHearts = FindObjectsOfType<FullHeart>();
@@ -46,7 +56,6 @@ public class LevelManager : MonoBehaviour
         hearts.Reverse();
         
         player.SetPlayersAttributesFromScene(this, hearts);
-        score.text = "Score: " + player.score;
     }
 
     public void ReturnToMainMenu()
