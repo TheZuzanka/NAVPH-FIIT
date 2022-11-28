@@ -75,7 +75,7 @@ public class SettingsController : MonoBehaviour
         }
     }
 
-    public void Highlight(Button button)
+    private void Highlight(Button button)
     {
         button.GetComponent<Image>().enabled = true;
     }
