@@ -7,5 +7,6 @@
         public static float SpeedMultiplier = 1f;
         public static float FxTimeIntervalMultiplier = 1f;
         public static int MaxHearts = 2;
+        public static float CoffeeTimeMultiplier = 1f;
     }
 }

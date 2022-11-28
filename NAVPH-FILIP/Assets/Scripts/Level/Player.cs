@@ -164,6 +164,6 @@ public class Player : MonoBehaviour
 
     public void SetCoffeeTimer()
     {
-        coffeeTimer = 1000;
+        coffeeTimer = (int) (1000 * Settings.Settings.CoffeeTimeMultiplier);
     }
 }
