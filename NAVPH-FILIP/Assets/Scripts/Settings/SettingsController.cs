@@ -7,7 +7,8 @@ public class SettingsController : MonoBehaviour
 {
     // attributes used as placeholders before save, on save selected trait is saved to settings
     [SerializeField] private Attribute selectedAttribute;
-    private Button _selectedButton;
+    private Button _selectedAttributeButton;
+    private Button _selectedPersonButton;
 
     private enum Attribute
     {
@@ -19,17 +20,26 @@ public class SettingsController : MonoBehaviour
 
     private void Start()
     {
-        HighlightActiveTrait();
+        HighlightActive();
     }
 
-    private void HighlightActiveTrait()
+    private void HighlightActive()
     {
-        // highlight trait if selected when entering settings
-        
+        // highlights trait and person if selected when entering settings
+
         if (Settings.Settings.SelectedTrait != -1)
         {
             GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
-            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject.GetComponent<Button>();
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
+                .GetComponent<Button>();
+            Highlight(selectedButton);
+        }
+
+        if (Settings.Settings.SelectedPerson != -1)
+        {
+            GameObject buttonsContainer = this.transform.Find("Main Panel").gameObject;
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
+                .GetComponent<Button>();
             Highlight(selectedButton);
         }
     }
@@ -50,34 +60,54 @@ public class SettingsController : MonoBehaviour
         tooltip.SetActive(false);
     }
 
-    private void RemovePreviousSelection()
+    private void RemovePreviousSelection(string buttonType)
     {
-        // removes visual highlight from previously selected button
-        
-        if (_selectedButton == null)
+        // removes visual highlight from previously selected buttons
+
+        if ((buttonType == "attribute") & (_selectedAttributeButton != null))
         {
-            return;
+            _selectedAttributeButton.GetComponent<Image>().enabled = false;
         }
 
-        _selectedButton.GetComponent<Image>().enabled = false;
+        if ((buttonType == "person") & (_selectedPersonButton != null))
+        {
+            _selectedPersonButton.GetComponent<Image>().enabled = false;
+        }
     }
 
-    public void Highlight(Button button)
+    private void Highlight(Button button)
     {
-        // this method is called when attribute is selected
-
-        _selectedButton = button;
-        _selectedButton.GetComponent<Image>().enabled = true;
+        button.GetComponent<Image>().enabled = true;
     }
 
-    public void SetAsSelected(string attribute)
+    public void SetAsSelectedAttribute(string attribute)
     {
         // this method is called when attribute is selected
         // method does not appear if String and Button as parameters (??)
 
-        RemovePreviousSelection();
+        RemovePreviousSelection("attribute");
 
         selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), attribute);
+    }
+
+    public void SetAsSelectedAttributeButton(Button button)
+    {
+        // this method is called when attribute is selected
+
+        _selectedAttributeButton = button;
+
+        Highlight(_selectedAttributeButton);
+    }
+
+    public void SetAsSelectedPersonButton(Button button)
+    {
+        // this method is called when person is selected
+
+        RemovePreviousSelection("person");
+
+        _selectedPersonButton = button;
+
+        Highlight(_selectedPersonButton);
     }
 
     public void ReturnToMainMenu()
@@ -88,12 +118,13 @@ public class SettingsController : MonoBehaviour
     private void SetAttributesToDefault()
     {
         // sets attributes to values when no attribute was selected
-        
+
         Settings.Settings.SpeedMultiplier = 1f;
         Settings.Settings.FxTimeIntervalMultiplier = 1f;
         Settings.Settings.MaxHearts = 2;
         Settings.Settings.CoffeeTimeMultiplier = 1f;
     }
+
     private void SetSuperSpeedAttribute()
     {
         Settings.Settings.SpeedMultiplier = 1.25f;
@@ -117,7 +148,7 @@ public class SettingsController : MonoBehaviour
     public void SaveAttributes()
     {
         // this method is used on save settings
-        
+
         SetAttributesToDefault();
 
         switch (selectedAttribute)
@@ -136,9 +167,10 @@ public class SettingsController : MonoBehaviour
                 break;
         }
 
-        // save selected trait so it appears when reopening settings
-        Settings.Settings.SelectedTrait = _selectedButton.transform.GetSiblingIndex();
-        
+        // save selected trait and person so it appears when reopening settings
+        Settings.Settings.SelectedTrait = _selectedAttributeButton.transform.GetSiblingIndex();
+        Settings.Settings.SelectedPerson = _selectedPersonButton.transform.GetSiblingIndex();
+
         ReturnToMainMenu();
     }
 }

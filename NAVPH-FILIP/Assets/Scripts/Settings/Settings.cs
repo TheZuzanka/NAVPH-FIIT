@@ -1,6 +1,4 @@
-﻿using UnityEngine.UI;
-
-namespace Settings
+﻿namespace Settings
 {
     public static class Settings
     {
@@ -12,5 +10,6 @@ namespace Settings
         public static float CoffeeTimeMultiplier = 1f;
 
         public static int SelectedTrait = -1;
+        public static int SelectedPerson = -1;
     }
 }
