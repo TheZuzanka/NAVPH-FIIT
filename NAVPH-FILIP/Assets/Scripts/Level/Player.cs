@@ -3,17 +3,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Vector2 speed;
-
     private Rigidbody2D _rigidbody2D;
-
+    [SerializeField] private Vector2 speed;
     [SerializeField] private int currentHearts;
-
     [SerializeField] private LevelManager levelManager;
-
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
-
     [SerializeField] private List<GameObject> heartsObjects;
+    [SerializeField] private int coffeeTimer;
 
     public int score;
 
@@ -44,9 +40,10 @@ public class Player : MonoBehaviour
         DisplayHearts();
 
         score = 0;
+        coffeeTimer = 0;
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        SetSpeed();
+        SetSpeed(3, 5);
         SetPlayerAsReference();
     }
 
@@ -95,19 +92,34 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetSpeed()
+    public void SetSpeed(float x, float y)
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(3 * Settings.Settings.SpeedMultiplier,
-            5 * Settings.Settings.SpeedMultiplier);
+        speed = new(x * Settings.Settings.SpeedMultiplier,
+            y * Settings.Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()
     {
         CheckIfNotFallen();
+        
+        CheckIfCoffeeActive();
 
         Move();
+    }
+    
+    private void CheckIfCoffeeActive()
+    {
+        if (coffeeTimer == 0)
+        {
+            // time for coffee effect is over, default speed is restored
+            SetSpeed(3, 5);
+        }
+        if (coffeeTimer > 0)
+        {
+            coffeeTimer--;
+        }
     }
 
     private void DisplayHearts()
@@ -148,5 +160,10 @@ public class Player : MonoBehaviour
         {
             levelManager.ReturnToMainMenu();
         }
+    }
+
+    public void SetCoffeeTimer()
+    {
+        coffeeTimer = 1000;
     }
 }
