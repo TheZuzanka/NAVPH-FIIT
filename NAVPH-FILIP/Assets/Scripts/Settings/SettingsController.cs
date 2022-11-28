@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
+    // attributes used as placeholders before save, on save selected trait is saved to settings
     [SerializeField] private Attribute selectedAttribute;
     private Button _selectedButton;
 
@@ -14,6 +15,23 @@ public class SettingsController : MonoBehaviour
         Logical,
         Heart,
         Coffee
+    }
+
+    private void Start()
+    {
+        HighlightActiveTrait();
+    }
+
+    private void HighlightActiveTrait()
+    {
+        // highlight trait if selected when entering settings
+        
+        if (Settings.Settings.SelectedTrait != -1)
+        {
+            GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject.GetComponent<Button>();
+            Highlight(selectedButton);
+        }
     }
 
     public void DisplayTooltip(Button button)
@@ -117,6 +135,9 @@ public class SettingsController : MonoBehaviour
                 AddExtraHeart();
                 break;
         }
+
+        // save selected trait so it appears when reopening settings
+        Settings.Settings.SelectedTrait = _selectedButton.transform.GetSiblingIndex();
         
         ReturnToMainMenu();
     }
