@@ -64,10 +64,7 @@ public class SettingsController : MonoBehaviour
 
     public void Highlight(Button button)
     {
-        // this method is called when attribute is selected
-
-        _selectedButton = button;
-        _selectedButton.GetComponent<Image>().enabled = true;
+        button.GetComponent<Image>().enabled = true;
     }
 
     public void SetAsSelected(string attribute)
@@ -78,6 +75,14 @@ public class SettingsController : MonoBehaviour
         RemovePreviousSelection();
 
         selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), attribute);
+    }
+
+    public void SetAsSelectedButton(Button button)
+    {
+        // this method is called when attribute is selected
+        _selectedButton = button;
+
+        Highlight(_selectedButton);
     }
 
     public void ReturnToMainMenu()

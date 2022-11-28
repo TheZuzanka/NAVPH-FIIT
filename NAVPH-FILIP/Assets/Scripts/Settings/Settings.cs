@@ -1,6 +1,4 @@
-﻿using UnityEngine.UI;
-
-namespace Settings
+﻿namespace Settings
 {
     public static class Settings
     {
