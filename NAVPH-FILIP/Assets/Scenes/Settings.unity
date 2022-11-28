@@ -625,7 +625,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelected
+        m_MethodName: SetAsSelectedAttribute
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -637,7 +637,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedButton
+        m_MethodName: SetAsSelectedAttributeButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 63054017}
@@ -1126,7 +1126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelected
+        m_MethodName: SetAsSelectedAttribute
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1138,7 +1138,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedButton
+        m_MethodName: SetAsSelectedAttributeButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 158308639}
@@ -1541,7 +1541,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 260325473}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 980388266}
+        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
+        m_MethodName: SetAsSelectedPersonButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 260325472}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &260325473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555,7 +1567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.81960785, g: 0.6784314, b: 0.13725491, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1953,7 +1965,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 457957095}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 980388266}
+        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
+        m_MethodName: SetAsSelectedPersonButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 457957094}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &457957095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1967,7 +1991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.81960785, g: 0.6784314, b: 0.13725491, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3427,7 +3451,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelected
+        m_MethodName: SetAsSelectedAttribute
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3439,7 +3463,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedButton
+        m_MethodName: SetAsSelectedAttributeButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1049305975}
@@ -4828,7 +4852,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelected
+        m_MethodName: SetAsSelectedAttribute
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4840,7 +4864,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedButton
+        m_MethodName: SetAsSelectedAttributeButton
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1435779339}
