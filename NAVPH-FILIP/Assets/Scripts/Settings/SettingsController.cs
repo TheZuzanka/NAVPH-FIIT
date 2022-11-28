@@ -26,18 +26,20 @@ public class SettingsController : MonoBehaviour
     private void HighlightActive()
     {
         // highlights trait and person if selected when entering settings
-        
+
         if (Settings.Settings.SelectedTrait != -1)
         {
             GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
-            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject.GetComponent<Button>();
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
+                .GetComponent<Button>();
             Highlight(selectedButton);
         }
-        
+
         if (Settings.Settings.SelectedPerson != -1)
         {
             GameObject buttonsContainer = this.transform.Find("Main Panel").gameObject;
-            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject.GetComponent<Button>();
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
+                .GetComponent<Button>();
             Highlight(selectedButton);
         }
     }
@@ -58,16 +60,16 @@ public class SettingsController : MonoBehaviour
         tooltip.SetActive(false);
     }
 
-    private void RemovePreviousSelection()
+    private void RemovePreviousSelection(string buttonType)
     {
         // removes visual highlight from previously selected buttons
-        
-        if (_selectedAttributeButton != null)
+
+        if ((buttonType == "attribute") & (_selectedAttributeButton != null))
         {
             _selectedAttributeButton.GetComponent<Image>().enabled = false;
         }
-        
-        if (_selectedPersonButton != null)
+
+        if ((buttonType == "person") & (_selectedPersonButton != null))
         {
             _selectedPersonButton.GetComponent<Image>().enabled = false;
         }
@@ -83,7 +85,7 @@ public class SettingsController : MonoBehaviour
         // this method is called when attribute is selected
         // method does not appear if String and Button as parameters (??)
 
-        RemovePreviousSelection();
+        RemovePreviousSelection("attribute");
 
         selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), attribute);
     }
@@ -91,17 +93,18 @@ public class SettingsController : MonoBehaviour
     public void SetAsSelectedAttributeButton(Button button)
     {
         // this method is called when attribute is selected
+
         _selectedAttributeButton = button;
 
         Highlight(_selectedAttributeButton);
     }
-    
+
     public void SetAsSelectedPersonButton(Button button)
     {
         // this method is called when person is selected
-        
-        RemovePreviousSelection();
-        
+
+        RemovePreviousSelection("person");
+
         _selectedPersonButton = button;
 
         Highlight(_selectedPersonButton);
@@ -115,12 +118,13 @@ public class SettingsController : MonoBehaviour
     private void SetAttributesToDefault()
     {
         // sets attributes to values when no attribute was selected
-        
+
         Settings.Settings.SpeedMultiplier = 1f;
         Settings.Settings.FxTimeIntervalMultiplier = 1f;
         Settings.Settings.MaxHearts = 2;
         Settings.Settings.CoffeeTimeMultiplier = 1f;
     }
+
     private void SetSuperSpeedAttribute()
     {
         Settings.Settings.SpeedMultiplier = 1.25f;
@@ -144,7 +148,7 @@ public class SettingsController : MonoBehaviour
     public void SaveAttributes()
     {
         // this method is used on save settings
-        
+
         SetAttributesToDefault();
 
         switch (selectedAttribute)
@@ -165,7 +169,7 @@ public class SettingsController : MonoBehaviour
 
         // save selected trait so it appears when reopening settings
         Settings.Settings.SelectedTrait = _selectedAttributeButton.transform.GetSiblingIndex();
-        
+
         ReturnToMainMenu();
     }
 }
