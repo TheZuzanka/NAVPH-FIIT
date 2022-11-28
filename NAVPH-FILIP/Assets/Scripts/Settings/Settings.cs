@@ -1,4 +1,6 @@
-﻿namespace Settings
+﻿using UnityEngine.UI;
+
+namespace Settings
 {
     public static class Settings
     {
@@ -8,5 +10,7 @@
         public static float FxTimeIntervalMultiplier = 1f;
         public static int MaxHearts = 2;
         public static float CoffeeTimeMultiplier = 1f;
+
+        public static int SelectedTrait = -1;
     }
 }

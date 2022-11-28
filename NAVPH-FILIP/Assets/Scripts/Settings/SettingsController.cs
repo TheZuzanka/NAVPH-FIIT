@@ -16,6 +16,18 @@ public class SettingsController : MonoBehaviour
         Coffee
     }
 
+    private void Start()
+    {
+        // highlight trait if selected when entering settings
+        
+        if (Settings.Settings.SelectedTrait != -1)
+        {
+            GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject.GetComponent<Button>();
+            Highlight(selectedButton);
+        }
+    }
+
     public void DisplayTooltip(Button button)
     {
         // this method is called when hover over tooltip (event trigger - Pointer Enter)
@@ -117,6 +129,9 @@ public class SettingsController : MonoBehaviour
                 AddExtraHeart();
                 break;
         }
+
+        // save selected trait so it appears when reopening settings
+        Settings.Settings.SelectedTrait = _selectedButton.transform.GetSiblingIndex();
         
         ReturnToMainMenu();
     }
