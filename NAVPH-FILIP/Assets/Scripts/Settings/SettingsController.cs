@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -75,6 +74,7 @@ public class SettingsController : MonoBehaviour
         Settings.Settings.SpeedMultiplier = 1f;
         Settings.Settings.FxTimeIntervalMultiplier = 1f;
         Settings.Settings.MaxHearts = 2;
+        Settings.Settings.CoffeeTimeMultiplier = 1f;
     }
     private void SetSuperSpeedAttribute()
     {
@@ -91,6 +91,11 @@ public class SettingsController : MonoBehaviour
         Settings.Settings.MaxHearts = 3;
     }
 
+    private void SetExtraCoffeeTime()
+    {
+        Settings.Settings.CoffeeTimeMultiplier = 1.2f;
+    }
+
     public void SaveAttributes()
     {
         // this method is used on save settings
@@ -103,6 +108,7 @@ public class SettingsController : MonoBehaviour
                 SetSuperSpeedAttribute();
                 break;
             case Attribute.Coffee:
+                SetExtraCoffeeTime();
                 break;
             case Attribute.Logical:
                 SetLowerFxFrequencyAttribute();

@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private Transform levelContainer;
-    
+
     // public = player sets self as reference when spawned
     public List<Enemy> enemies;
     public Boss boss;
@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
             Camera.main.transform.position += new Vector3(20, 0, 0);
         }
     }
+    
 
     public void Update()
     {
@@ -41,9 +42,9 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
-        player.SetSpeed();
+        player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
-        
+
         List<GameObject> hearts = new List<GameObject>();
         var foundHearts = FindObjectsOfType<FullHeart>();
         
