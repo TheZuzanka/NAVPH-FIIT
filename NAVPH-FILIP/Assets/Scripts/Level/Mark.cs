@@ -5,15 +5,16 @@ using TMPro;
 
 public class Mark : MonoBehaviour
 {
-    private float timePassed = 0.0f;
-    public float maxExistTime = 2.0f;
+    private Boss boss;
 
-    public TextMeshProUGUI markText;
+    private float timePassed = 0.0f;
+    [SerializeField] float maxExistTime = 2.0f;
+
     private string mark;
 
     void Start()
     {
-        
+        boss = FindObjectOfType<Boss>();
     }
 
 
@@ -31,7 +32,6 @@ public class Mark : MonoBehaviour
     public void SetMark(string mark)
     {
         this.mark = mark;
-        markText.SetText(mark);
     }
 
     // If player is hit, decrease player's health and delete FX object
@@ -39,17 +39,25 @@ public class Mark : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            switch (mark)
-            { 
-                case "FX":
-                    {
-                        Player playerScript = collision.gameObject.GetComponent<Player>();
-                        playerScript.RemoveHeart();
-
-                        Destroy(gameObject);
-                        break;
-                    }
+             
+            if(mark.Equals("FX"))
+            {
+                Player playerScript = collision.gameObject.GetComponent<Player>();
+                playerScript.RemoveHeart();
             }
+            
+            else if(mark.Equals("A"))
+            {
+                Destroy(boss.gameObject);
+            }
+
+            else
+            {
+                boss.MoveToNextMark();
+            }
+            
+
+            Destroy(gameObject);
         }
     }
 }

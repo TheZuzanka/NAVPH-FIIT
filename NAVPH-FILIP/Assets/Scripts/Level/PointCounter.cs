@@ -6,7 +6,7 @@ using UnityEngine;
 public class PointCounter : MonoBehaviour
 {
     private int points = 0;
-    public TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText;
 
     public void AddPoints(int pointsToAdd)
     {

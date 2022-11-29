@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2033018234864655862}
   - component: {fileID: 8632047560820262414}
   m_Layer: 7
-  m_Name: Mark
+  m_Name: D
   m_TagString: Mark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.3368, y: -2.1825562}
+  m_Offset: {x: 4.3038025, y: -2.1819382}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -128,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 533.38477, y: 298.60925}
+  m_Size: {x: 440.2232, y: 270.24963}
   m_EdgeRadius: 0
 --- !u!114 &2033018234864655862
 MonoBehaviour:
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280194798
+  m_fontColor: {r: 0.9339623, g: 0.5867525, b: 0.118948035, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -258,8 +258,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 400
-  m_fontSizeBase: 400
+  m_fontSize: 370
+  m_fontSizeBase: 370
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -234.76773, y: -143.11093, z: -238.8605, w: -142.0479}
+  m_margin: {x: -157.83194, y: -143.11093, z: -157.76584, w: -142.0479}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

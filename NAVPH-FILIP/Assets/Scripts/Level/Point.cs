@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Point : MonoBehaviour
 {
-    public GameObject pointCounter;
-    public int pointsToAdd = 1;
+    [SerializeField] GameObject pointCounter;
+    [SerializeField] int pointsToAdd = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

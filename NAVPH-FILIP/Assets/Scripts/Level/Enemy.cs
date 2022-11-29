@@ -3,19 +3,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public Transform setLeftBoundary;
+    [SerializeField] Transform setLeftBoundary;
     private float leftBoundaryX;
-    public Transform setRightBoundary;
+    [SerializeField] Transform setRightBoundary;
     private float rightBoundaryX;
 
-    public Player player;
-    public float hostileDistance = 10.0f;
-    public float enemySpeed = 2.0f;
+    private Player player;
+    [SerializeField] float hostileDistance = 10.0f;
+    [SerializeField] float enemySpeed = 2.0f;
 
-    public GameObject FX;
-    public float throwForce = 20.0f;
+    [SerializeField] GameObject FX;
+    [SerializeField] float throwForce = 20.0f;
 
-    public float spawnInterval;
+    [SerializeField] float spawnInterval;
     private float timePassed = 0.0f;
     
     void Start()
@@ -58,6 +58,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void ThrowFX()
+    {
+        // Set vector that will point FX object towards player
+        Vector3 fxPosition = transform.position;
+        Vector3 fromEnemyToPlayer = player.transform.position - fxPosition;
+        fromEnemyToPlayer.Normalize();
+
+        GameObject newFX = Instantiate(FX, fxPosition, Quaternion.identity);
+        newFX.GetComponent<Mark>().SetMark("FX");
+
+        // fire FX object towards player
+        newFX.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,30 +81,16 @@ public class Enemy : MonoBehaviour
         // has passed since previous FX object spawn
         if (distanceFromPlayer <= hostileDistance)
         {
-       
             Move();
   
             if (timePassed >= spawnInterval)
             {
-                // Set vector that will point FX object towards player
-                Vector3 fxPosition = transform.position;
-                Vector3 fromEnemyToPlayer = player.transform.position - fxPosition;
-                fromEnemyToPlayer.Normalize();
-
-                GameObject newFX = Instantiate(FX, fxPosition, Quaternion.identity);
-                newFX.GetComponent<Mark>().SetMark("FX");
-
-                // fire FX object towards player
-                newFX.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
+                ThrowFX();
+                timePassed = 0.0f;
             }
-        }
 
-        if (timePassed >= spawnInterval)
-        {
-            timePassed = 0.0f;
+            timePassed += Time.deltaTime;
         }
-
-        timePassed += Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
