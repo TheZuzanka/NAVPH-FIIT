@@ -32,14 +32,16 @@ public class SettingsController : MonoBehaviour
             GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
             Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
                 .GetComponent<Button>();
+            _selectedAttributeButton = selectedButton;
             Highlight(selectedButton);
         }
 
         if (Settings.Settings.SelectedPerson != -1)
         {
             GameObject buttonsContainer = this.transform.Find("Main Panel").gameObject;
-            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedPerson).gameObject
                 .GetComponent<Button>();
+            _selectedPersonButton = selectedButton;
             Highlight(selectedButton);
         }
     }
