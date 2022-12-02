@@ -42,7 +42,10 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
+        
+        // this is an observer of health system
         player.heartDelegate += OnHeartsChanged;
+        
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
 
@@ -57,7 +60,7 @@ public class LevelManager : MonoBehaviour
         // list is reversed so hearts decrease from the end of list
         hearts.Reverse();
         
-        player.SetPlayersAttributesFromScene(this, hearts);
+        player.SetLevelManager(this);
     }
 
     private void OnHeartsChanged(int heartCount)

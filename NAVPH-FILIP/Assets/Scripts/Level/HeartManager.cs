@@ -17,14 +17,18 @@ namespace Level
 
         private IEnumerator AssignPlayer()
         {
+            // as player is spawned in scene to obtain reference this method has to be delayed 
+            
             yield return new WaitForEndOfFrame();
             _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-            _player.heartDelegate += NieUpdate;
+            
+            // this is an observer of health system
+            _player.heartDelegate += DisplayHearts;
             
             _player.UpdateState();
         }
 
-        private void NieUpdate(int hearts)
+        private void DisplayHearts(int hearts)
         {
             for (var i = 0; i < heartObjects.Count; i++)
             {

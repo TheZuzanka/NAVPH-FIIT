@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,11 +7,11 @@ public class Player : MonoBehaviour
     [SerializeField] private int currentHearts;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
-    [SerializeField] private List<GameObject> heartsObjects;
     [SerializeField] private int coffeeTimer;
 
     public int score;
 
+    // this is a publisher for health system
     public delegate void HeartDelegate(int heartCount);
 
     public HeartDelegate heartDelegate;
@@ -27,13 +26,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetPlayersAttributesFromScene(LevelManager levelManager,
-        List<GameObject> heartsObjects)
+    public void SetLevelManager(LevelManager levelManager)
     {
         // public = levelManager uses this method when player is spawned to set references
 
         this.levelManager = levelManager;
-        this.heartsObjects = heartsObjects;
     }
 
 
@@ -151,6 +148,10 @@ public class Player : MonoBehaviour
 
     public void UpdateState()
     {
+        // force check for number of hearts displayed
+        // this method is used when when player spawned in scene, as all heart icons are enabled by
+        // default and player can have 2 or 3 hearts based on selected traits
+        
         heartDelegate(currentHearts);
     }
 }
