@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
 
     public int score;
 
+    public delegate void HeartDelegate(int heartCount);
+
+    public HeartDelegate heartDelegate;
+
     private void SetPlayerAsReference()
     {
         levelManager.boss.SetPlayer(this);
@@ -37,7 +41,7 @@ public class Player : MonoBehaviour
     {
         // max hearts depends on whether the player has the sweetheart trait selected
         currentHearts = Settings.Settings.MaxHearts;
-        DisplayHearts();
+        heartDelegate(currentHearts);
 
         score = 0;
         coffeeTimer = 0;
@@ -52,10 +56,8 @@ public class Player : MonoBehaviour
         if (transform.position.y < levelManager.toKillY)
         {
             // remove all hearts when player falls from platform
-            for (int i = 0; i < currentHearts; i++)
-            {
-                RemoveHeart();
-            }
+            currentHearts = 0;
+            heartDelegate(currentHearts);
         }
     }
 
@@ -122,29 +124,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DisplayHearts()
-    {
-        for (int i = 0; i < heartsObjects.Count; i++)
-        {
-            if (i < currentHearts)
-            {
-                heartsObjects[i].SetActive(true);
-            }
-            else
-            {
-                heartsObjects[i].SetActive(false);
-            }
-        }
-    }
-
     public void AddHeart()
     {
         // public = when player collects heart this method is called
 
-        if (currentHearts < 2)
+        if (currentHearts < Settings.Settings.MaxHearts)
         {
             currentHearts += 1;
-            DisplayHearts();
+            heartDelegate(currentHearts);
         }
     }
 
@@ -154,16 +141,16 @@ public class Player : MonoBehaviour
 
         currentHearts -= 1;
         Debug.Log($"Heart Removed, remaining = {currentHearts}");
-        DisplayHearts();
-
-        if (currentHearts == 0)
-        {
-            levelManager.ReturnToMainMenu();
-        }
+        heartDelegate(currentHearts);
     }
 
     public void SetCoffeeTimer()
     {
         coffeeTimer = (int) (500 * Settings.Settings.CoffeeTimeMultiplier);
+    }
+
+    public void UpdateState()
+    {
+        heartDelegate(currentHearts);
     }
 }

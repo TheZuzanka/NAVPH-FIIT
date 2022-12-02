@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
+        player.heartDelegate += OnHeartsChanged;
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
 
@@ -57,6 +58,14 @@ public class LevelManager : MonoBehaviour
         hearts.Reverse();
         
         player.SetPlayersAttributesFromScene(this, hearts);
+    }
+
+    private void OnHeartsChanged(int heartCount)
+    {
+        if (heartCount == 0)
+        {
+            ReturnToMainMenu();
+        }
     }
 
     public void ReturnToMainMenu()
