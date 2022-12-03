@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         // max hearts depends on whether the player has the sweetheart trait selected
-        currentHearts = Settings.Settings.MaxHearts;
+        currentHearts = Settings.MaxHearts;
         heartDelegate(currentHearts);
 
         score = 0;
@@ -95,8 +95,8 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(x * Settings.Settings.SpeedMultiplier,
-            y * Settings.Settings.SpeedMultiplier);
+        speed = new(x * Settings.SpeedMultiplier,
+            y * Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
     {
         // public = when player collects heart this method is called
 
-        if (currentHearts < Settings.Settings.MaxHearts)
+        if (currentHearts < Settings.MaxHearts)
         {
             currentHearts += 1;
             heartDelegate(currentHearts);
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
 
     public void SetCoffeeTimer()
     {
-        coffeeTimer = (int) (500 * Settings.Settings.CoffeeTimeMultiplier);
+        coffeeTimer = (int) (500 * Settings.CoffeeTimeMultiplier);
     }
 
     public void UpdateState()
