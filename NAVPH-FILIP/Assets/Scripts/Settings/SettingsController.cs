@@ -66,7 +66,7 @@ public class SettingsController : MonoBehaviour
     {
         // removes visual highlight from previously selected buttons
 
-        if ((buttonType == "attribute") & (_selectedAttributeButton != null))
+        if (buttonType == "attribute" && _selectedAttributeButton != null)
         {
             _selectedAttributeButton.GetComponent<Image>().enabled = false;
         }
