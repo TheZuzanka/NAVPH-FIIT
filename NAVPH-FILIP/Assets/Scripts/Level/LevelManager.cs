@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private Transform levelContainer;
+    [SerializeField] private Camera mainCamera;
 
     // public = player sets self as reference when spawned
     public List<Enemy> enemies;
@@ -18,7 +19,7 @@ public class LevelManager : MonoBehaviour
 
     private void MoveCameraWhenPlayerNotInViewport()
     {
-        Vector3 screenPositionOfPlayer = Camera.main.WorldToScreenPoint(player.transform.position);
+        Vector3 screenPositionOfPlayer = mainCamera.WorldToScreenPoint(player.transform.position);
         if (screenPositionOfPlayer.x < 0)
         {
             // player is off the left boundary
