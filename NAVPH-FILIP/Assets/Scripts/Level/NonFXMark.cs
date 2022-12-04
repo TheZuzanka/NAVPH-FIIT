@@ -17,10 +17,9 @@ public class NonFXMark : MonoBehaviour
         boss = GameObject.FindWithTag("Boss").GetComponent<Boss>();
     }
 
-
-    // Update is called once per frame
     void Update()
     {
+        // If time set in maxExistTime has passed, destroy the GameObject
         timePassed += Time.deltaTime;
 
         if (timePassed >= maxExistTime)
@@ -34,7 +33,7 @@ public class NonFXMark : MonoBehaviour
         this.mark = mark;
     }
 
-    // If player is hit, decrease player's health and delete FX object
+    // If player catches the mark
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

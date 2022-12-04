@@ -11,6 +11,7 @@ public class FXMark : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Destroy FX object if time set in maxExistTime has passed
         timePassed += Time.deltaTime;
 
         if (timePassed >= maxExistTime)

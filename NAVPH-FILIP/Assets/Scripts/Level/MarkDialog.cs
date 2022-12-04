@@ -22,12 +22,14 @@ public class MarkDialog : MonoBehaviour
         markText.SetText(mark);
     }
 
+    // Continue fighting the boss to get a better mark
     public void Continue()
     {
         canvas.enabled = false;
         Time.timeScale = 1.0f;
     }
 
+    // End the battle with boss with just obtained mark
     public void End()
     {
         canvas.enabled = false;

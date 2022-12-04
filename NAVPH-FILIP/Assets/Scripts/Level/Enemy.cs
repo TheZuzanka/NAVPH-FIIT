@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    // Boundaries beyond which enemy cannot move
     [SerializeField] Transform leftBoundary;
     private float leftBoundaryX;
     [SerializeField] Transform rightBoundary;
@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
         this.player = player;
     }
 
+    // Move towards player
     private void Move()
     {
         float currentPosistionX = transform.position.x;
@@ -71,7 +72,6 @@ public class Enemy : MonoBehaviour
         newFX.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);

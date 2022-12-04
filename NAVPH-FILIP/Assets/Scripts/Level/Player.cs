@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
     {
         // public = when player collects FX this method is called
 
-       // currentHearts -= 1;
+        currentHearts -= 1;
         Debug.Log($"Heart Removed, remaining = {currentHearts}");
         heartDelegate(currentHearts);
     }

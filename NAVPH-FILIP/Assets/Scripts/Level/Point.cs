@@ -12,6 +12,7 @@ public class Point : MonoBehaviour
         _pointCounter = GameObject.FindWithTag("PointCounter").GetComponent<PointCounter>();
     }
 
+    // Increase player's score if he/she collects a points object
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

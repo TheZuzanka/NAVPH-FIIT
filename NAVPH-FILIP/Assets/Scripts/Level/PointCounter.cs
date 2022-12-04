@@ -8,6 +8,7 @@ public class PointCounter : MonoBehaviour
     private int points = 0;
     [SerializeField] TextMeshProUGUI scoreText;
 
+    // Increase player's score and display it
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;

@@ -41,18 +41,19 @@ public class Boss : MonoBehaviour
 
     private void ThrowMark(string markStr, float throwForce)
     {
-        // Set vector that will point FX object towards player
-        Vector3 fxPosition = transform.position;
-        Vector3 fromEnemyToPlayer = _player.transform.position - fxPosition;
+        // Set vector that will point mark towards player
+        Vector3 markPosition = transform.position;
+        Vector3 fromEnemyToPlayer = _player.transform.position - markPosition;
         fromEnemyToPlayer.Normalize();
 
-        // Create Mark object
-        GameObject newMark = Instantiate(GetMarkObject(markStr), fxPosition, Quaternion.identity);
+        // Create mark
+        GameObject newMark = Instantiate(GetMarkObject(markStr), markPosition, Quaternion.identity);
 
+        // Poznamka: newMark je preto GameObject a nie rovno NonFXMark (script), lebo newMark moze mat aj FXMark script komponent 
         if (!markStr.Equals("FX"))
             newMark.GetComponent<NonFXMark>().SetMark(markStr);
 
-        // fire Mark object towards player
+        // Fire mark towards player
         newMark.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
     }
 
@@ -60,16 +61,18 @@ public class Boss : MonoBehaviour
     void Update()
     {
         float distanceFromPlayer = Vector3.Distance(_player.transform.position, transform.position);
-        // Create new FX object if player is in hostileDistance and time set in spawnInterval
-        // has passed since previous FX object spawn
+        // Create new FX/Non FX mark if player is in hostileDistance and time set in fxSpawnInterval/otherMarkSpawnInterval
+        // has passed since previous FX/Non FX mark spawn
         if (distanceFromPlayer <= hostileDistance)
         {
+            // Throw FX
             if (fxTimePassed >= fxSpawnInterval)
             {
                 ThrowMark("FX",fxThrowForce);
                 fxTimePassed = 0.0f;
             }
 
+            //Throw Non FX mark
             if (otherMarkTimePassed >= otherMarkSpawnInterval)
             {
                 ThrowMark(marks[currentNonFXMarkIndex], otherMarkThrowForce);
@@ -81,7 +84,8 @@ public class Boss : MonoBehaviour
         }
     }
 
-
+    //Open Dialog asking whether player is satisfied with obtianed mark
+    // or wants to continue playing for better mark
     private void DisplayDialog(string mark)
     {
         _markDialog.GetComponent<Canvas>().enabled = true;
@@ -91,12 +95,14 @@ public class Boss : MonoBehaviour
 
     public void AskAboutMark()
     {
+        // Open dialog
         if (currentNonFXMarkIndex < marks.Length - 1)
         {
             DisplayDialog(marks[currentNonFXMarkIndex]);
             currentNonFXMarkIndex++;
         }
 
+        // Destroy Boss object if player catches A
         else 
         {
             Destroy(gameObject);
