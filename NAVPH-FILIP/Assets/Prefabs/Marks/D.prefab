@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4487772779587776121}
   - component: {fileID: 5715172723068696548}
   - component: {fileID: 3812806852531172259}
-  - component: {fileID: 2033018234864655862}
   - component: {fileID: 8632047560820262414}
+  - component: {fileID: -6231664562687860481}
   m_Layer: 7
   m_Name: D
   m_TagString: Mark
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5715172723068696548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,20 +130,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 440.2232, y: 270.24963}
   m_EdgeRadius: 0
---- !u!114 &2033018234864655862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456213616076204580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22112c1fd5514544e85c2a226e40d270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxExistTime: 2
-  markText: {fileID: 8566209434833979953}
 --- !u!50 &8632047560820262414
 Rigidbody2D:
   serializedVersion: 4
@@ -165,6 +151,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6231664562687860481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456213616076204580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b2e36697d931b48abf658b87e0eca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxExistTime: 5
 --- !u!1 &1034843457481206887
 GameObject:
   m_ObjectHideFlags: 0

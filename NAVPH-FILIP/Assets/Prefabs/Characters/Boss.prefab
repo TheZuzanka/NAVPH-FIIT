@@ -125,12 +125,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostileDistance: 10
-  markFX: {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
-  markE: {fileID: 456213616076204580, guid: e07ac7a0c542a07468bfea838d943ef6, type: 3}
-  markD: {fileID: 456213616076204580, guid: 9d6657cd6842a96419cbe753d17a9675, type: 3}
-  markC: {fileID: 456213616076204580, guid: ecf77a57f1d5cc644aa62e8dfede883c, type: 3}
-  markB: {fileID: 456213616076204580, guid: 225082f1a939bf845bb5bde22ef3d803, type: 3}
-  markA: {fileID: 456213616076204580, guid: 9655d6cbab551a74da1614e262e328b5, type: 3}
+  MarksList:
+  - {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
+  - {fileID: 456213616076204580, guid: e07ac7a0c542a07468bfea838d943ef6, type: 3}
+  - {fileID: 456213616076204580, guid: 9d6657cd6842a96419cbe753d17a9675, type: 3}
+  - {fileID: 456213616076204580, guid: ecf77a57f1d5cc644aa62e8dfede883c, type: 3}
+  - {fileID: 456213616076204580, guid: 225082f1a939bf845bb5bde22ef3d803, type: 3}
+  - {fileID: 456213616076204580, guid: 9655d6cbab551a74da1614e262e328b5, type: 3}
   fxThrowForce: 10
   otherMarkThrowForce: 5
   fxSpawnInterval: 2

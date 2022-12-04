@@ -3,9 +3,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] Transform setLeftBoundary;
+    [SerializeField] Transform leftBoundary;
     private float leftBoundaryX;
-    [SerializeField] Transform setRightBoundary;
+    [SerializeField] Transform rightBoundary;
     private float rightBoundaryX;
 
     private Player player;
@@ -20,8 +20,8 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
-        leftBoundaryX = setLeftBoundary.position.x;
-        rightBoundaryX = setRightBoundary.position.x;
+        leftBoundaryX = leftBoundary.position.x;
+        rightBoundaryX = rightBoundary.position.x;
         spawnInterval = 3.0f * Settings.FxTimeIntervalMultiplier;
     }
 
@@ -66,7 +66,6 @@ public class Enemy : MonoBehaviour
         fromEnemyToPlayer.Normalize();
 
         GameObject newFX = Instantiate(FX, fxPosition, Quaternion.identity);
-        newFX.GetComponent<Mark>().SetMark("FX");
 
         // fire FX object towards player
         newFX.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
@@ -95,7 +94,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.CompareTag("Player"))
         {
             Destroy(gameObject);
         }

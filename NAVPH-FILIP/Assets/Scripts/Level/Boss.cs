@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Boss : MonoBehaviour
 {
     private Player player;
     [SerializeField] float hostileDistance = 10.0f;
 
-    [SerializeField] GameObject markFX;
-    [SerializeField] GameObject markE;
-    [SerializeField] GameObject markD;
-    [SerializeField] GameObject markC;
-    [SerializeField] GameObject markB;
-    [SerializeField] GameObject markA;
+    [SerializeField]  List<GameObject> MarksList;
 
     [SerializeField] float fxThrowForce = 10.0f;
     [SerializeField] float otherMarkThrowForce = 5.0f;
@@ -22,8 +18,9 @@ public class Boss : MonoBehaviour
     private float fxTimePassed = 0.0f;
     private float otherMarkTimePassed = 0.0f;
 
-    private string[] marks = new string[] { "E", "D", "C", "B", "A" };
-    private int currentMarkIndex = 0;
+
+    private string[] marks = new string[] { "FX", "E", "D", "C", "B", "A" };
+    private int currentNonFXMarkIndex = 1;
 
     public void SetPlayer(Player player)
     {
@@ -32,23 +29,7 @@ public class Boss : MonoBehaviour
 
     GameObject GetMarkObject(string markStr)
     {
-        switch (markStr)
-        {
-            case "FX":
-                return markFX;
-            case "E":
-                return markE;
-            case "D":
-                return markD;
-            case "C":
-                return markC;
-            case "B":
-                return markB;
-            case "A":
-                return markA;
-            default:
-                return markFX;
-        }
+        return MarksList[Array.IndexOf(marks, markStr)];
     }
 
     private void ThrowMark(string markStr, float throwForce)
@@ -60,7 +41,9 @@ public class Boss : MonoBehaviour
 
         // Create Mark object
         GameObject newMark = Instantiate(GetMarkObject(markStr), fxPosition, Quaternion.identity);
-        newMark.GetComponent<Mark>().SetMark(markStr);
+
+        if (!markStr.Equals("FX"))
+            newMark.GetComponent<NonFXMark>().SetMark(markStr);
 
         // fire Mark object towards player
         newMark.GetComponent<Rigidbody2D>().velocity = fromEnemyToPlayer * throwForce;
@@ -82,7 +65,7 @@ public class Boss : MonoBehaviour
 
             if (otherMarkTimePassed >= otherMarkSpawnInterval)
             {
-                ThrowMark(marks[currentMarkIndex], otherMarkThrowForce);
+                ThrowMark(marks[currentNonFXMarkIndex], otherMarkThrowForce);
                 otherMarkTimePassed = 0.0f;
             }
 
@@ -93,9 +76,9 @@ public class Boss : MonoBehaviour
 
     public void MoveToNextMark()
     {
-        if (currentMarkIndex < marks.Length - 1)
+        if (currentNonFXMarkIndex < marks.Length - 1)
         {
-            currentMarkIndex++;
+            currentNonFXMarkIndex++;
         }
     }
 

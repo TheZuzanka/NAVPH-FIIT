@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Point : MonoBehaviour
 {
-    [SerializeField] GameObject pointCounter;
+    private PointCounter _pointCounter;
     [SerializeField] int pointsToAdd = 1;
+
+    void Start()
+    {
+        _pointCounter = GameObject.FindWithTag("PointCounter").GetComponent<PointCounter>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-            pointCounter.GetComponent<PointCounter>().AddPoints(pointsToAdd);
+            _pointCounter.AddPoints(pointsToAdd);
             Destroy(gameObject);
         }
     }

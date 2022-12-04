@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Mark : MonoBehaviour
+public class NonFXMark : MonoBehaviour
 {
     private Boss boss;
 
     private float timePassed = 0.0f;
-    [SerializeField] float maxExistTime = 2.0f;
+    [SerializeField] float maxExistTime = 5.0f;
 
     private string mark;
 
@@ -37,16 +37,9 @@ public class Mark : MonoBehaviour
     // If player is hit, decrease player's health and delete FX object
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-             
-            if(mark.Equals("FX"))
-            {
-                Player playerScript = collision.gameObject.GetComponent<Player>();
-                playerScript.RemoveHeart();
-            }
-            
-            else if(mark.Equals("A"))
+            if(mark.Equals("A"))
             {
                 Destroy(boss.gameObject);
             }

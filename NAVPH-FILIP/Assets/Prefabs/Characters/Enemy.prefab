@@ -473,8 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69e395134e53f942acd4f16ec794ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setLeftBoundary: {fileID: 5778937197928883764}
-  setRightBoundary: {fileID: 7216563972046764817}
+  leftBoundary: {fileID: 5778937197928883764}
+  rightBoundary: {fileID: 7216563972046764817}
   hostileDistance: 10
   enemySpeed: 1.5
   FX: {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
