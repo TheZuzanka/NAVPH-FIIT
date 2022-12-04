@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     {
         leftBoundaryX = setLeftBoundary.position.x;
         rightBoundaryX = setRightBoundary.position.x;
-        spawnInterval = 3.0f * Settings.Settings.FxTimeIntervalMultiplier;
+        spawnInterval = 3.0f * Settings.FxTimeIntervalMultiplier;
     }
 
     public void SetPlayer(Player player)

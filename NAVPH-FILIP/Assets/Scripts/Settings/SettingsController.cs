@@ -27,19 +27,19 @@ public class SettingsController : MonoBehaviour
     {
         // highlights trait and person if selected when entering settings
 
-        if (Settings.Settings.SelectedTrait != -1)
+        if (Settings.SelectedTrait != -1)
         {
             GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
-            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedTrait).gameObject
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.SelectedTrait).gameObject
                 .GetComponent<Button>();
             _selectedAttributeButton = selectedButton;
             Highlight(selectedButton);
         }
 
-        if (Settings.Settings.SelectedPerson != -1)
+        if (Settings.SelectedPerson != -1)
         {
             GameObject buttonsContainer = this.transform.Find("Main Panel").gameObject;
-            Button selectedButton = buttonsContainer.transform.GetChild(Settings.Settings.SelectedPerson).gameObject
+            Button selectedButton = buttonsContainer.transform.GetChild(Settings.SelectedPerson).gameObject
                 .GetComponent<Button>();
             _selectedPersonButton = selectedButton;
             Highlight(selectedButton);
@@ -66,7 +66,7 @@ public class SettingsController : MonoBehaviour
     {
         // removes visual highlight from previously selected buttons
 
-        if ((buttonType == "attribute") & (_selectedAttributeButton != null))
+        if (buttonType == "attribute" && _selectedAttributeButton != null)
         {
             _selectedAttributeButton.GetComponent<Image>().enabled = false;
         }
@@ -121,30 +121,30 @@ public class SettingsController : MonoBehaviour
     {
         // sets attributes to values when no attribute was selected
 
-        Settings.Settings.SpeedMultiplier = 1f;
-        Settings.Settings.FxTimeIntervalMultiplier = 1f;
-        Settings.Settings.MaxHearts = 2;
-        Settings.Settings.CoffeeTimeMultiplier = 1f;
+        Settings.SpeedMultiplier = 1f;
+        Settings.FxTimeIntervalMultiplier = 1f;
+        Settings.MaxHearts = 2;
+        Settings.CoffeeTimeMultiplier = 1f;
     }
 
     private void SetSuperSpeedAttribute()
     {
-        Settings.Settings.SpeedMultiplier = 1.25f;
+        Settings.SpeedMultiplier = 1.25f;
     }
 
     private void SetLowerFxFrequencyAttribute()
     {
-        Settings.Settings.FxTimeIntervalMultiplier = 1.5f;
+        Settings.FxTimeIntervalMultiplier = 1.5f;
     }
 
     private void AddExtraHeart()
     {
-        Settings.Settings.MaxHearts = 3;
+        Settings.MaxHearts = 3;
     }
 
     private void SetExtraCoffeeTime()
     {
-        Settings.Settings.CoffeeTimeMultiplier = 1.2f;
+        Settings.CoffeeTimeMultiplier = 1.2f;
     }
 
     public void SaveAttributes()
@@ -170,8 +170,8 @@ public class SettingsController : MonoBehaviour
         }
 
         // save selected trait and person so it appears when reopening settings
-        Settings.Settings.SelectedTrait = _selectedAttributeButton.transform.GetSiblingIndex();
-        Settings.Settings.SelectedPerson = _selectedPersonButton.transform.GetSiblingIndex();
+        Settings.SelectedTrait = _selectedAttributeButton.transform.GetSiblingIndex();
+        Settings.SelectedPerson = _selectedPersonButton.transform.GetSiblingIndex();
 
         ReturnToMainMenu();
     }
