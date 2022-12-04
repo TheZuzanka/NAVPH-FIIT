@@ -5,8 +5,10 @@ using System;
 
 public class Boss : MonoBehaviour
 {
-    private Player player;
+    private Player _player;
     [SerializeField] float hostileDistance = 10.0f;
+
+    private GameObject _markDialog;
 
     [SerializeField]  List<GameObject> MarksList;
 
@@ -22,9 +24,14 @@ public class Boss : MonoBehaviour
     private string[] marks = new string[] { "FX", "E", "D", "C", "B", "A" };
     private int currentNonFXMarkIndex = 1;
 
+    void Start()
+    {
+        _markDialog = GameObject.FindWithTag("MarkDialog");
+    }
+
     public void SetPlayer(Player player)
     {
-        this.player = player;
+        _player = player;
     }
 
     GameObject GetMarkObject(string markStr)
@@ -36,7 +43,7 @@ public class Boss : MonoBehaviour
     {
         // Set vector that will point FX object towards player
         Vector3 fxPosition = transform.position;
-        Vector3 fromEnemyToPlayer = player.transform.position - fxPosition;
+        Vector3 fromEnemyToPlayer = _player.transform.position - fxPosition;
         fromEnemyToPlayer.Normalize();
 
         // Create Mark object
@@ -52,7 +59,7 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
+        float distanceFromPlayer = Vector3.Distance(_player.transform.position, transform.position);
         // Create new FX object if player is in hostileDistance and time set in spawnInterval
         // has passed since previous FX object spawn
         if (distanceFromPlayer <= hostileDistance)
@@ -74,11 +81,25 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void MoveToNextMark()
+
+    private void DisplayDialog(string mark)
+    {
+        _markDialog.GetComponent<Canvas>().enabled = true;
+        _markDialog.GetComponent<MarkDialog>().DisplayMark(mark);
+        Time.timeScale = 0.0f;
+    }
+
+    public void AskAboutMark()
     {
         if (currentNonFXMarkIndex < marks.Length - 1)
         {
+            DisplayDialog(marks[currentNonFXMarkIndex]);
             currentNonFXMarkIndex++;
+        }
+
+        else 
+        {
+            Destroy(gameObject);
         }
     }
 

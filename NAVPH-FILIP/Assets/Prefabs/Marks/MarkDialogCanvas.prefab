@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: -3922902954134970531}
   m_Layer: 5
   m_Name: MarkDialogCanvas
-  m_TagString: Untagged
+  m_TagString: MarkDialog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -600,8 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markText: {fileID: 4267685605855152023}
-  continueButton: {fileID: 955636457967739781}
-  endButton: {fileID: 955636458916426391}
+  canvas: {fileID: 955636458881832921}
 --- !u!1 &955636458916426389
 GameObject:
   m_ObjectHideFlags: 0

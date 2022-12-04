@@ -9,6 +9,8 @@ TagManager:
   - ground
   - Mark
   - PointCounter
+  - Boss
+  - MarkDialog
   layers:
   - Default
   - TransparentFX

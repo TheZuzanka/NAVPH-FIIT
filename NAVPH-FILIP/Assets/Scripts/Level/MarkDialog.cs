@@ -8,38 +8,30 @@ using UnityEngine.UI;
 public class MarkDialog : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI markText;
-    [SerializeField] private Button continueButton;
-    [SerializeField] private Button endButton;
+    [SerializeField] Canvas canvas;
 
-    private Action onEndAction;
-    private Action onContinueAction;
+    private GameObject _boss;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        _boss = GameObject.FindGameObjectWithTag("Boss");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisplayMark(string mark)
     {
-        
+        markText.SetText(mark);
     }
 
     public void Continue()
     {
-        onContinueAction?.Invoke();
-        //Close();
+        canvas.enabled = false;
+        Time.timeScale = 1.0f;
     }
 
     public void End()
     {
-        onEndAction?.Invoke();
-        //Close();
-    }
-
-    public void SetMarkText(string mark)
-    {
-        markText.SetText(mark);
+        canvas.enabled = false;
+        Time.timeScale = 1.0f;
+        Destroy(_boss);
     }
 }

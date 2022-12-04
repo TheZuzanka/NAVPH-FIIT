@@ -14,7 +14,7 @@ public class NonFXMark : MonoBehaviour
 
     void Start()
     {
-        boss = FindObjectOfType<Boss>();
+        boss = GameObject.FindWithTag("Boss").GetComponent<Boss>();
     }
 
 
@@ -39,17 +39,7 @@ public class NonFXMark : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(mark.Equals("A"))
-            {
-                Destroy(boss.gameObject);
-            }
-
-            else
-            {
-                boss.MoveToNextMark();
-            }
-            
-
+            boss.AskAboutMark();
             Destroy(gameObject);
         }
     }
