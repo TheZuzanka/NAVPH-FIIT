@@ -110,41 +110,41 @@ public class SettingsController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void SetAttributesToDefault()
+    private void SetSuperSpeedAttribute()
     {
-        // sets attributes to values when no attribute was selected
-
-        Settings.SpeedMultiplier = 1f;
+        Settings.SpeedMultiplier = 1.25f;
         Settings.FxTimeIntervalMultiplier = 1f;
         Settings.MaxHearts = 2;
         Settings.CoffeeTimeMultiplier = 1f;
     }
 
-    private void SetSuperSpeedAttribute()
-    {
-        Settings.SpeedMultiplier = 1.25f;
-    }
-
     private void SetLowerFxFrequencyAttribute()
     {
+        Settings.SpeedMultiplier = 1f;
         Settings.FxTimeIntervalMultiplier = 1.5f;
+        Settings.MaxHearts = 2;
+        Settings.CoffeeTimeMultiplier = 1f;
     }
 
     private void AddExtraHeart()
     {
+        Settings.SpeedMultiplier = 1f;
+        Settings.FxTimeIntervalMultiplier = 1f;
         Settings.MaxHearts = 3;
+        Settings.CoffeeTimeMultiplier = 1f;
     }
 
     private void SetExtraCoffeeTime()
     {
+        Settings.SpeedMultiplier = 1f;
+        Settings.FxTimeIntervalMultiplier = 1f;
+        Settings.MaxHearts = 2;
         Settings.CoffeeTimeMultiplier = 1.2f;
     }
 
     public void SaveAttributes()
     {
         // this method is used on save settings
-
-        SetAttributesToDefault();
 
         switch (selectedAttribute)
         {
