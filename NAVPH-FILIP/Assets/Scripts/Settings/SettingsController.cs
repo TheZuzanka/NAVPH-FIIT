@@ -14,7 +14,7 @@ public class SettingsController : MonoBehaviour
     {
         Fitness,
         Logical,
-        Heart,
+        Sweetheart,
         Coffee
     }
 
@@ -82,21 +82,14 @@ public class SettingsController : MonoBehaviour
         button.GetComponent<Image>().enabled = true;
     }
 
-    public void SetAsSelectedAttribute(string attribute)
-    {
-        // this method is called when attribute is selected
-        // method does not appear if String and Button as parameters (??)
-
-        RemovePreviousSelection("attribute");
-
-        selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), attribute);
-    }
-
     public void SetAsSelectedAttributeButton(Button button)
     {
         // this method is called when attribute is selected
+        
+        RemovePreviousSelection("attribute");
 
         _selectedAttributeButton = button;
+        selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), button.tag);
 
         Highlight(_selectedAttributeButton);
     }
@@ -164,7 +157,7 @@ public class SettingsController : MonoBehaviour
             case Attribute.Logical:
                 SetLowerFxFrequencyAttribute();
                 break;
-            case Attribute.Heart:
+            case Attribute.Sweetheart:
                 AddExtraHeart();
                 break;
         }

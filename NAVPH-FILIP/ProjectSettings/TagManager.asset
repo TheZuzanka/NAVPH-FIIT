@@ -11,6 +11,10 @@ TagManager:
   - PointCounter
   - Boss
   - MarkDialog
+  - Fitness
+  - Logical
+  - Coffee
+  - Sweetheart
   layers:
   - Default
   - TransparentFX
