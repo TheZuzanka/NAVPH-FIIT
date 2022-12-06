@@ -24,13 +24,13 @@ public class LevelManager : MonoBehaviour
         {
             // player is off the left boundary
             
-            Camera.main.transform.position -= new Vector3(20, 0, 0);
+            mainCamera.transform.position -= new Vector3(20, 0, 0);
         } 
         else if (screenPositionOfPlayer.x > Screen.width)
         {
             // player is off the right boundary
             
-            Camera.main.transform.position += new Vector3(20, 0, 0);
+            mainCamera.transform.position += new Vector3(20, 0, 0);
         }
     }
     
