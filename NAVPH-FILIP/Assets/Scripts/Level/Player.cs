@@ -73,20 +73,15 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             // player can jump only when standing on the platform
-
-            RaycastHit2D[] allHits = Physics2D.RaycastAll(transform.position,
+            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position,
                 Vector2.down, touchTheGroundThreshold);
 
-            if (allHits.Length > 1)
-            {
-                // we hit something else than player's own collider
-                RaycastHit2D firstHitNotPlayer = allHits[1];
+            // if hit is the ground, player can jump
 
-                // if hit is the ground, player can jump
-                if (firstHitNotPlayer.collider.CompareTag("ground"))
-                {
-                    _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
-                }
+            if (hit.collider != null && hit.collider.CompareTag("ground"))
+            {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, speed.y);
             }
         }
     }
