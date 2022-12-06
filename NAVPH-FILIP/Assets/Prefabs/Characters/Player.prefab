@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1500969195120736296}
   - component: {fileID: 1397759723840728955}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5232563003340143666}
   - component: {fileID: 2065673777147163389}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4910492222199791037}
   - component: {fileID: 8077405069997958525}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1160136321102312243}
   - component: {fileID: 5480960809803412496}
   - component: {fileID: 1422599610180817602}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -306,7 +306,6 @@ MonoBehaviour:
   currentHearts: 0
   levelManager: {fileID: 0}
   touchTheGroundThreshold: 1.5
-  heartsObjects: []
   coffeeTimer: 0
   score: 0
 --- !u!50 &5480960809803412496
@@ -366,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3852353659519644672}
   - component: {fileID: 7722712569472694867}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

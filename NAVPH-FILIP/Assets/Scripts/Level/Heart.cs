@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Heart : MonoBehaviour
@@ -7,7 +6,7 @@ public class Heart : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Player player = (Player)FindObjectOfType(typeof(Player));
+            Player player = other.GetComponent<Player>();
             player.AddHeart();
             Destroy(gameObject);
         }

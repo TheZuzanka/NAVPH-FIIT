@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 63054020}
   m_Layer: 5
   m_Name: Loves Fitness Button
-  m_TagString: Untagged
+  m_TagString: Fitness
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,18 +623,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 980388266}
-        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedAttribute
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Fitness
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
         m_MethodName: SetAsSelectedAttributeButton
@@ -1053,7 +1041,7 @@ GameObject:
   - component: {fileID: 158308642}
   m_Layer: 5
   m_Name: Super Logical Button
-  m_TagString: Untagged
+  m_TagString: Logical
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1124,18 +1112,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 980388266}
-        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedAttribute
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Logical
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
         m_MethodName: SetAsSelectedAttributeButton
@@ -2100,7 +2076,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 338773968}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.2797753
+  m_Size: 0.28052434
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3378,7 +3354,7 @@ GameObject:
   - component: {fileID: 1049305978}
   m_Layer: 5
   m_Name: Coffee Enjoyer Button
-  m_TagString: Untagged
+  m_TagString: Coffee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3449,18 +3425,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 980388266}
-        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedAttribute
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Coffee
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
         m_MethodName: SetAsSelectedAttributeButton
@@ -4734,7 +4698,7 @@ GameObject:
   - component: {fileID: 1435779338}
   m_Layer: 5
   m_Name: Sweetheart Button
-  m_TagString: Untagged
+  m_TagString: Sweetheart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4850,18 +4814,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 980388266}
-        m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
-        m_MethodName: SetAsSelectedAttribute
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Heart
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 980388266}
         m_TargetAssemblyTypeName: SettingsController, Assembly-CSharp
         m_MethodName: SetAsSelectedAttributeButton

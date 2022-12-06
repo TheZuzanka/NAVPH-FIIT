@@ -14,7 +14,7 @@ public class SettingsController : MonoBehaviour
     {
         Fitness,
         Logical,
-        Heart,
+        Sweetheart,
         Coffee
     }
 
@@ -82,21 +82,14 @@ public class SettingsController : MonoBehaviour
         button.GetComponent<Image>().enabled = true;
     }
 
-    public void SetAsSelectedAttribute(string attribute)
-    {
-        // this method is called when attribute is selected
-        // method does not appear if String and Button as parameters (??)
-
-        RemovePreviousSelection("attribute");
-
-        selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), attribute);
-    }
-
     public void SetAsSelectedAttributeButton(Button button)
     {
         // this method is called when attribute is selected
+        
+        RemovePreviousSelection("attribute");
 
         _selectedAttributeButton = button;
+        selectedAttribute = (Attribute) Enum.Parse(typeof(Attribute), button.tag);
 
         Highlight(_selectedAttributeButton);
     }
@@ -117,41 +110,41 @@ public class SettingsController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void SetAttributesToDefault()
+    private void SetSuperSpeedAttribute()
     {
-        // sets attributes to values when no attribute was selected
-
-        Settings.SpeedMultiplier = 1f;
+        Settings.SpeedMultiplier = 1.25f;
         Settings.FxTimeIntervalMultiplier = 1f;
         Settings.MaxHearts = 2;
         Settings.CoffeeTimeMultiplier = 1f;
     }
 
-    private void SetSuperSpeedAttribute()
-    {
-        Settings.SpeedMultiplier = 1.25f;
-    }
-
     private void SetLowerFxFrequencyAttribute()
     {
+        Settings.SpeedMultiplier = 1f;
         Settings.FxTimeIntervalMultiplier = 1.5f;
+        Settings.MaxHearts = 2;
+        Settings.CoffeeTimeMultiplier = 1f;
     }
 
     private void AddExtraHeart()
     {
+        Settings.SpeedMultiplier = 1f;
+        Settings.FxTimeIntervalMultiplier = 1f;
         Settings.MaxHearts = 3;
+        Settings.CoffeeTimeMultiplier = 1f;
     }
 
     private void SetExtraCoffeeTime()
     {
+        Settings.SpeedMultiplier = 1f;
+        Settings.FxTimeIntervalMultiplier = 1f;
+        Settings.MaxHearts = 2;
         Settings.CoffeeTimeMultiplier = 1.2f;
     }
 
     public void SaveAttributes()
     {
         // this method is used on save settings
-
-        SetAttributesToDefault();
 
         switch (selectedAttribute)
         {
@@ -164,7 +157,7 @@ public class SettingsController : MonoBehaviour
             case Attribute.Logical:
                 SetLowerFxFrequencyAttribute();
                 break;
-            case Attribute.Heart:
+            case Attribute.Sweetheart:
                 AddExtraHeart();
                 break;
         }
