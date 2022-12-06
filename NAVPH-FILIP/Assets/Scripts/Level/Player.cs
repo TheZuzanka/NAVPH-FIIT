@@ -67,11 +67,13 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             _rigidbody2D.velocity = new Vector2(speed.x, _rigidbody2D.velocity.y);
+            currentImage.flipX = false;
         }
 
         else if (Input.GetKey(KeyCode.A))
         {
             _rigidbody2D.velocity = new Vector2(-speed.x, _rigidbody2D.velocity.y);
+            currentImage.flipX = true;
         }
 
         if (Input.GetKey(KeyCode.W))
