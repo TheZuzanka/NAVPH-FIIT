@@ -163,8 +163,16 @@ public class SettingsController : MonoBehaviour
         }
 
         // save selected trait and person so it appears when reopening settings
-        Settings.SelectedTrait = _selectedAttributeButton.transform.GetSiblingIndex();
-        Settings.SelectedPerson = _selectedPersonButton.transform.GetSiblingIndex();
+        
+        if (_selectedAttributeButton != null)
+        {
+            Settings.SelectedTrait = _selectedAttributeButton.transform.GetSiblingIndex();
+        }
+
+        if (_selectedPersonButton != null)
+        {
+            Settings.SelectedPerson = _selectedPersonButton.transform.GetSiblingIndex();
+        }
 
         ReturnToMainMenu();
     }

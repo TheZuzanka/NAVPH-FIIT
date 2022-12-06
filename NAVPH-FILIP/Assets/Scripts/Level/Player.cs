@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
     [SerializeField] private int coffeeTimer;
+    [SerializeField] private Sprite[] images;
+    [SerializeField] private SpriteRenderer currentImage;
 
     public int score;
 
@@ -36,6 +38,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        currentImage.sprite = images[Settings.SelectedPerson];
+        
         // max hearts depends on whether the player has the sweetheart trait selected
         currentHearts = Settings.MaxHearts;
         heartDelegate(currentHearts);
@@ -63,11 +67,13 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             _rigidbody2D.velocity = new Vector2(speed.x, _rigidbody2D.velocity.y);
+            currentImage.flipX = false;
         }
 
         else if (Input.GetKey(KeyCode.A))
         {
             _rigidbody2D.velocity = new Vector2(-speed.x, _rigidbody2D.velocity.y);
+            currentImage.flipX = true;
         }
 
         if (Input.GetKey(KeyCode.W))
