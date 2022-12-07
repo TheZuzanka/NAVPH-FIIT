@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private Transform levelContainer;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private Finish finish;
 
     // public = player sets self as reference when spawned
     public List<Enemy> enemies;
@@ -46,6 +47,9 @@ public class LevelManager : MonoBehaviour
         
         // this is an observer of health system
         player.heartDelegate += OnHeartsChanged;
+
+        // this is an observer of finish system
+        finish.isFinishedDelegate += OnFinished;
         
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
@@ -56,6 +60,14 @@ public class LevelManager : MonoBehaviour
     private void OnHeartsChanged(int heartCount)
     {
         if (heartCount == 0)
+        {
+            ReturnToMainMenu();
+        }
+    }
+
+    private void OnFinished(bool isFinished)
+    {
+        if (isFinished)
         {
             ReturnToMainMenu();
         }
