@@ -3021,6 +3021,7 @@ MonoBehaviour:
   score: {fileID: 1942233285}
   levelContainer: {fileID: 1983318422}
   mainCamera: {fileID: 519420031}
+  finish: {fileID: 97206440533825145}
   enemies:
   - {fileID: 2009591289}
   boss: {fileID: 2086342683}
@@ -3618,6 +3619,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8021504139147833201, guid: c5ba40ee7c998bf4fa10cad73b0b4714, type: 3}
   m_PrefabInstance: {fileID: 97206440533825143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &97206440533825145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2045998498101604519, guid: c5ba40ee7c998bf4fa10cad73b0b4714, type: 3}
+  m_PrefabInstance: {fileID: 97206440533825143}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592af2479ff540c45bf1ddcfef709303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &955636458435000956
 PrefabInstance:
   m_ObjectHideFlags: 0
