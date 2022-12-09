@@ -20,7 +20,7 @@ public class AchiemevemtsContoller : MonoBehaviour
         {
             if (Achievements.achievements.ElementAt(index).Value)
             {
-                element.color = Color.green;
+                element.color = new Color32(255, 217, 102, 255);
             }
 
             index++;
