@@ -3857,6 +3857,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1942233285}
+    - target: {fileID: 2673611926682357336, guid: 0ab00072c65d2274c8040b22de1360a5, type: 3}
+      propertyPath: achievementsManager
+      value: 
+      objectReference: {fileID: 1197514802}
     - target: {fileID: 2673611926682357337, guid: 0ab00072c65d2274c8040b22de1360a5, type: 3}
       propertyPath: m_RootOrder
       value: 2

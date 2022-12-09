@@ -52,8 +52,8 @@ public class LevelManager : MonoBehaviour
         // this is an observer of finish system
         finish.isFinishedDelegate += OnFinished;
         
-        achievementsManager.SetFinishedAchievement(Settings.SelectedPerson);
-        
+        achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
+
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
 

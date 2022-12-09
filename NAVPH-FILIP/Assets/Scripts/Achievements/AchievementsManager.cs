@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class AchievementsManager : MonoBehaviour
@@ -30,7 +29,17 @@ public class AchievementsManager : MonoBehaviour
         }
     }
 
-    public void SetFinishedAchievement(int playerIndex)
+    private void OnScoreAchieved(bool isFinished)
+    {
+        Achievements.achievements["CompleteWithScore"] = isFinished;
+    }
+
+    public void SetScoreAchievement()
+    {
+        achievementsDelegate += OnScoreAchieved;
+    }
+
+    public void SetFinishedPlayerAchievement(int playerIndex)
     {
         if (playerIndex == (int) Player.Filip)
         {
