@@ -1,22 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class PointCounter : MonoBehaviour
 {
-    private int points = 0;
+    private int points;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] private AchievementsManager achievementsManager;
+
+    public delegate void PointCounterDelegate(int score);
+
+    public PointCounterDelegate pointCounterDelegate;
 
     // Increase player's score and display it
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
+        pointCounterDelegate(points);
+
         scoreText.SetText("Score: {0}", points);
     }
 
-    public int GetPoints()
+    private void Start()
     {
-        return points;
+        pointCounterDelegate += OnPointsChange;
+
+        points = 0;
+        pointCounterDelegate(points);
+    }
+
+    private void OnPointsChange(int score)
+    {
+        if (score >= Achievements.PointAchievementThreshold)
+        {
+            achievementsManager.SetScoreAchievement();
+        }
     }
 }

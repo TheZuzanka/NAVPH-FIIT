@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform levelContainer;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Finish finish;
+    [SerializeField] private AchievementsManager achievementsManager;
 
     // public = player sets self as reference when spawned
     public List<Enemy> enemies;
@@ -51,6 +52,8 @@ public class LevelManager : MonoBehaviour
         // this is an observer of finish system
         finish.isFinishedDelegate += OnFinished;
         
+        achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
+
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
 
@@ -69,6 +72,7 @@ public class LevelManager : MonoBehaviour
     {
         if (isFinished)
         {
+            achievementsManager.achievementsDelegate(true);
             ReturnToMainMenu();
         }
     }

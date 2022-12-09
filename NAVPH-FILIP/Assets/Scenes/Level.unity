@@ -1821,6 +1821,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 599077128231247785, guid: 488795ab6820bb14eafd955f6348e90d, type: 3}
   m_PrefabInstance: {fileID: 1119049347}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1197514801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197514803}
+  - component: {fileID: 1197514802}
+  m_Layer: 0
+  m_Name: AchievementSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1197514802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197514801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab17dfdc76bbdee43a7b3558db848964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1197514803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197514801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1983318422}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210428017
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,6 +3046,7 @@ Transform:
   - {fileID: 2103143485}
   - {fileID: 1526568312}
   - {fileID: 97206440533825144}
+  - {fileID: 1197514803}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3022,6 +3067,7 @@ MonoBehaviour:
   levelContainer: {fileID: 1983318422}
   mainCamera: {fileID: 519420031}
   finish: {fileID: 97206440533825145}
+  achievementsManager: {fileID: 1197514802}
   enemies:
   - {fileID: 2009591289}
   boss: {fileID: 2086342683}
@@ -3568,6 +3614,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 2045998498101604519, guid: c5ba40ee7c998bf4fa10cad73b0b4714, type: 3}
+      propertyPath: achievementsManager
+      value: 
+      objectReference: {fileID: 1197514802}
     - target: {fileID: 8021504139147833201, guid: c5ba40ee7c998bf4fa10cad73b0b4714, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -3807,6 +3857,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1942233285}
+    - target: {fileID: 2673611926682357336, guid: 0ab00072c65d2274c8040b22de1360a5, type: 3}
+      propertyPath: achievementsManager
+      value: 
+      objectReference: {fileID: 1197514802}
     - target: {fileID: 2673611926682357337, guid: 0ab00072c65d2274c8040b22de1360a5, type: 3}
       propertyPath: m_RootOrder
       value: 2

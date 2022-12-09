@@ -4,7 +4,6 @@ public class Finish : MonoBehaviour
 {
     [SerializeField] private bool _isFinished;
     public delegate void IsFinishedDelegate(bool isFinished);
-
     public IsFinishedDelegate isFinishedDelegate;
 
     private void Start()
@@ -18,6 +17,7 @@ public class Finish : MonoBehaviour
         {
             _isFinished = true;
             isFinishedDelegate(_isFinished);
+
             Destroy(gameObject);
         }
     }

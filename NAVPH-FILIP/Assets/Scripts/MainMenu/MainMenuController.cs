@@ -12,4 +12,9 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Settings");
     }
+
+    public void EnterAchievements()
+    {
+        SceneManager.LoadScene("Achievements");
+    }
 }
