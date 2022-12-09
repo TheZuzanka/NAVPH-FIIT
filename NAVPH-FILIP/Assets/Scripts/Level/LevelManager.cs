@@ -72,6 +72,7 @@ public class LevelManager : MonoBehaviour
     {
         if (isFinished)
         {
+            achievementsManager.achievementsDelegate(true);
             ReturnToMainMenu();
         }
     }
