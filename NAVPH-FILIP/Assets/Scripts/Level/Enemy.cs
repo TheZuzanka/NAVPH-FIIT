@@ -18,19 +18,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] float spawnInterval;
     private float timePassed = 0.0f;
 
-    [SerializeField] private float isBLockedTimer;
-    public bool isBlocked;
-    public delegate void ShieldDelegate(bool _isBlocked);
-    public ShieldDelegate shieldDelegate;
-    
     void Start()
     {
         leftBoundaryX = leftBoundary.position.x;
         rightBoundaryX = rightBoundary.position.x;
         spawnInterval = 3.0f * Settings.FxTimeIntervalMultiplier;
-
-        isBlocked = false;
-        shieldDelegate(isBlocked);
     }
 
     public void SetPlayer(Player player)
@@ -90,18 +82,13 @@ public class Enemy : MonoBehaviour
         {
             Move();
   
-            if (timePassed >= spawnInterval && !isBlocked)
+            if (timePassed >= spawnInterval)
             {
                 ThrowFX();
                 timePassed = 0.0f;
             }
 
             timePassed += Time.deltaTime;
-
-            if (isBLockedTimer > 0)
-            {
-                isBLockedTimer--;
-            }
         }
     }
 
@@ -111,10 +98,5 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void SetBlockedTimer(float time)
-    {
-        isBLockedTimer = time;
     }
 }

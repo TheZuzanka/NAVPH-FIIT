@@ -48,17 +48,14 @@ public class LevelManager : MonoBehaviour
         
         // this is an observer of health system
         player.heartDelegate += OnHeartsChanged;
+        
+        // this is an observer of shield system
+        player.shieldDelegate += OnShieldActivated;
 
         // this is an observer of finish system
         finish.isFinishedDelegate += OnFinished;
         
         achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
-        
-        // this is an observer of shield system
-        foreach (var enemy in enemies)
-        {
-            enemy.shieldDelegate += OnEnemyBlocked;
-        }
 
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
@@ -82,20 +79,17 @@ public class LevelManager : MonoBehaviour
             ReturnToMainMenu();
         }
     }
-    
-    private void OnEnemyBlocked(bool isBlocked)
-    {
-        if (isBlocked)
-        {
-            foreach (var enemy in enemies)
-            {
-                enemy.SetBlockedTimer(500);
-            }
-        }
-    }
 
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void OnShieldActivated(bool isActivated)
+    {
+        if (isActivated)
+        {
+            player.shieldTimer = 200;
+        }
     }
 }

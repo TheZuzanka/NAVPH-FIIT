@@ -7,11 +7,9 @@ public class Shield : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            foreach (var enemy in levelManager.enemies)
-            {
-                enemy.isBlocked = true;
-                enemy.shieldDelegate(enemy.isBlocked);
-            }
+            Player player = other.GetComponent<Player>();
+            player.shieldActive = true;
+            player.shieldDelegate(player.shieldActive);
             Destroy(gameObject);
         }
     }
