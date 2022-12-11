@@ -53,6 +53,12 @@ public class LevelManager : MonoBehaviour
         finish.isFinishedDelegate += OnFinished;
         
         achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
+        
+        // this is an observer of shield system
+        foreach (var enemy in enemies)
+        {
+            enemy.shieldDelegate += OnEnemyBlocked;
+        }
 
         player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
@@ -74,6 +80,17 @@ public class LevelManager : MonoBehaviour
         {
             achievementsManager.achievementsDelegate(true);
             ReturnToMainMenu();
+        }
+    }
+    
+    private void OnEnemyBlocked(bool isBlocked)
+    {
+        if (isBlocked)
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.SetBlockedTimer(500);
+            }
         }
     }
 
