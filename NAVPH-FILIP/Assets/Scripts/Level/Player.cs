@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
     public delegate void HeartDelegate(int heartCount);
 
     public HeartDelegate heartDelegate;
+    
+    public float shieldTimer;
+    public bool shieldActive;
+    public delegate void ShieldDelegate(bool shieldActive);
+    public ShieldDelegate shieldDelegate;
 
     private void SetPlayerAsReference()
     {
@@ -100,11 +105,26 @@ public class Player : MonoBehaviour
             y * Settings.SpeedMultiplier);
     }
 
+    private void CheckIfShieldActive()
+    {
+        if (shieldTimer > 0)
+        {
+            shieldTimer--;
+        }
+        else
+        {
+            shieldActive = false;
+            shieldDelegate(shieldActive);
+        }
+    }
+
     private void FixedUpdate()
     {
         CheckIfNotFallen();
         
         CheckIfCoffeeActive();
+
+        CheckIfShieldActive();
 
         Move();
     }
@@ -137,9 +157,12 @@ public class Player : MonoBehaviour
     {
         // public = when player collects FX this method is called
 
-        currentHearts -= 1;
-        Debug.Log($"Heart Removed, remaining = {currentHearts}");
-        heartDelegate(currentHearts);
+        if (!shieldActive)
+        {
+            currentHearts -= 1;
+            Debug.Log($"Heart Removed, remaining = {currentHearts}");
+            heartDelegate(currentHearts);
+        }
     }
 
     public void SetCoffeeTimer()

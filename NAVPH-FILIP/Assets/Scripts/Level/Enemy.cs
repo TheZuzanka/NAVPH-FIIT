@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] float spawnInterval;
     private float timePassed = 0.0f;
-    
+
     void Start()
     {
         leftBoundaryX = leftBoundary.position.x;

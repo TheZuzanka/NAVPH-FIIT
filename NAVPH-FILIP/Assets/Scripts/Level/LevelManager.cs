@@ -48,6 +48,9 @@ public class LevelManager : MonoBehaviour
         
         // this is an observer of health system
         player.heartDelegate += OnHeartsChanged;
+        
+        // this is an observer of shield system
+        player.shieldDelegate += OnShieldActivated;
 
         // this is an observer of finish system
         finish.isFinishedDelegate += OnFinished;
@@ -80,5 +83,13 @@ public class LevelManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void OnShieldActivated(bool isActivated)
+    {
+        if (isActivated)
+        {
+            player.shieldTimer = 200;
+        }
     }
 }
