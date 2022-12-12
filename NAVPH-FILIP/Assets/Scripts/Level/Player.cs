@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -101,8 +102,8 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(x * Settings.SpeedMultiplier,
-            y * Settings.SpeedMultiplier);
+        speed = new(3 * Settings.SpeedMultiplier,
+            5 * Settings.SpeedMultiplier);
     }
 
     private void CheckIfShieldActive()
