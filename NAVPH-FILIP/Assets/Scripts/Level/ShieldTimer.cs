@@ -18,6 +18,7 @@ public class ShieldTimer : MonoBehaviour
         {
             Player player = GetComponent<Player>();
             player.shieldActive = false;
+            player.shieldDelegate(player.shieldActive);
             enabled = false;
         }
     }

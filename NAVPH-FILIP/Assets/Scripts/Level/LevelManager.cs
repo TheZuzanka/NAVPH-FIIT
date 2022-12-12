@@ -94,6 +94,12 @@ public class LevelManager : MonoBehaviour
         {
             ShieldTimer timer = player.GetComponent<ShieldTimer>();
             timer.enabled = true;
+            
+            player.shieldImage.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            player.shieldImage.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
     

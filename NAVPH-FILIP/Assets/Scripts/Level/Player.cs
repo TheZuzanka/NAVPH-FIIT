@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public int score;
     public bool shieldActive;
     public bool coffeeActive;
+    public SpriteRenderer shieldImage;
 
     // this is a publisher for health system
     public delegate void HeartDelegate(int heartCount);
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
     public delegate void CoffeeDelegate(bool coffeeActive);
     public CoffeeDelegate coffeeDelegate;
 
-    private void SetColliderWidth()
+    private void SetPlayerWidth()
     {
         // if Filip is selected, he needs wider collider because of Dante
         
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
         {
             BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
             boxCollider.size = new Vector2(2,3);
+
+            shieldImage.transform.localScale = new Vector3(5f, 1.6f, 1);
         }
     }
 
@@ -54,7 +57,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentImage.sprite = images[Settings.SelectedPerson];
-        SetColliderWidth();
+        SetPlayerWidth();
         
         // max hearts depends on whether the player has the sweetheart trait selected
         currentHearts = Settings.MaxHearts;
