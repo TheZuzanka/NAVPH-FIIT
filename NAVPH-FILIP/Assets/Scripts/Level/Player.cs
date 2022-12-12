@@ -7,20 +7,20 @@ public class Player : MonoBehaviour
     [SerializeField] private int currentHearts;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
-    [SerializeField] private int coffeeTimer;
     [SerializeField] private Sprite[] images;
     [SerializeField] private SpriteRenderer currentImage;
 
     public int score;
+    public bool shieldActive;
+    public bool coffeeActive;
 
     // this is a publisher for health system
     public delegate void HeartDelegate(int heartCount);
-
     public HeartDelegate heartDelegate;
-    
-    public bool shieldActive;
     public delegate void ShieldDelegate(bool shieldActive);
     public ShieldDelegate shieldDelegate;
+    public delegate void CoffeeDelegate(bool coffeeActive);
+    public CoffeeDelegate coffeeDelegate;
 
     private void SetColliderWidth()
     {
@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
         heartDelegate(currentHearts);
 
         score = 0;
-        coffeeTimer = 0;
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
         SetSpeed(3, 5);
@@ -112,30 +111,15 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(3 * Settings.SpeedMultiplier,
-            5 * Settings.SpeedMultiplier);
+        speed = new(x * Settings.SpeedMultiplier,
+            y * Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()
     {
         CheckIfNotFallen();
-        
-        CheckIfCoffeeActive();
 
         Move();
-    }
-    
-    private void CheckIfCoffeeActive()
-    {
-        if (coffeeTimer == 0)
-        {
-            // time for coffee effect is over, default speed is restored
-            SetSpeed(3, 5);
-        }
-        if (coffeeTimer > 0)
-        {
-            coffeeTimer--;
-        }
     }
 
     public void AddHeart()
@@ -159,11 +143,6 @@ public class Player : MonoBehaviour
             Debug.Log($"Heart Removed, remaining = {currentHearts}");
             heartDelegate(currentHearts);
         }
-    }
-
-    public void SetCoffeeTimer()
-    {
-        coffeeTimer = (int) (500 * Settings.CoffeeTimeMultiplier);
     }
 
     public void UpdateState()
