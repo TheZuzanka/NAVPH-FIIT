@@ -24,6 +24,17 @@ public class Player : MonoBehaviour
     public delegate void ShieldDelegate(bool shieldActive);
     public ShieldDelegate shieldDelegate;
 
+    private void SetColliderWidth()
+    {
+        // if Filip is selected, he needs wider collider because of Dante
+        
+        if (Settings.SelectedPerson == 1)
+        {
+            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+            boxCollider.size = new Vector2(2,3);
+        }
+    }
+
     private void SetPlayerAsReference()
     {
         levelManager.boss.SetPlayer(this);
@@ -45,6 +56,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentImage.sprite = images[Settings.SelectedPerson];
+        SetColliderWidth();
         
         // max hearts depends on whether the player has the sweetheart trait selected
         currentHearts = Settings.MaxHearts;
