@@ -16,6 +16,8 @@ public class ShieldTimer : MonoBehaviour
         }
         else
         {
+            Player player = GetComponent<Player>();
+            player.shieldActive = false;
             enabled = false;
         }
     }

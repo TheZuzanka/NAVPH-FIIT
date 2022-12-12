@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,7 +18,6 @@ public class Player : MonoBehaviour
 
     public HeartDelegate heartDelegate;
     
-    public float shieldTimer;
     public bool shieldActive;
     public delegate void ShieldDelegate(bool shieldActive);
     public ShieldDelegate shieldDelegate;
@@ -118,26 +116,11 @@ public class Player : MonoBehaviour
             5 * Settings.SpeedMultiplier);
     }
 
-    private void CheckIfShieldActive()
-    {
-        if (shieldTimer > 0)
-        {
-            shieldTimer--;
-        }
-        else
-        {
-            shieldActive = false;
-            shieldDelegate(shieldActive);
-        }
-    }
-
     private void FixedUpdate()
     {
         CheckIfNotFallen();
         
         CheckIfCoffeeActive();
-
-        //CheckIfShieldActive();
 
         Move();
     }
