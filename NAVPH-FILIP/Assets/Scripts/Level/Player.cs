@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,23 +7,23 @@ public class Player : MonoBehaviour
     [SerializeField] private int currentHearts;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
-    [SerializeField] private int coffeeTimer;
     [SerializeField] private Sprite[] images;
     [SerializeField] private SpriteRenderer currentImage;
 
     public int score;
+    public bool shieldActive;
+    public bool coffeeActive;
+    public SpriteRenderer shieldImage;
 
     // this is a publisher for health system
     public delegate void HeartDelegate(int heartCount);
-
     public HeartDelegate heartDelegate;
-    
-    public float shieldTimer;
-    public bool shieldActive;
     public delegate void ShieldDelegate(bool shieldActive);
     public ShieldDelegate shieldDelegate;
+    public delegate void CoffeeDelegate(bool coffeeActive);
+    public CoffeeDelegate coffeeDelegate;
 
-    private void SetColliderWidth()
+    private void SetPlayerWidth()
     {
         // if Filip is selected, he needs wider collider because of Dante
         
@@ -32,6 +31,8 @@ public class Player : MonoBehaviour
         {
             BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
             boxCollider.size = new Vector2(2,3);
+
+            shieldImage.transform.localScale = new Vector3(5f, 1.6f, 1);
         }
     }
 
@@ -56,14 +57,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentImage.sprite = images[Settings.SelectedPerson];
-        SetColliderWidth();
+        SetPlayerWidth();
         
         // max hearts depends on whether the player has the sweetheart trait selected
         currentHearts = Settings.MaxHearts;
         heartDelegate(currentHearts);
 
         score = 0;
-        coffeeTimer = 0;
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
         SetSpeed(3, 5);
@@ -114,45 +114,15 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(3 * Settings.SpeedMultiplier,
-            5 * Settings.SpeedMultiplier);
-    }
-
-    private void CheckIfShieldActive()
-    {
-        if (shieldTimer > 0)
-        {
-            shieldTimer--;
-        }
-        else
-        {
-            shieldActive = false;
-            shieldDelegate(shieldActive);
-        }
+        speed = new(x * Settings.SpeedMultiplier,
+            y * Settings.SpeedMultiplier);
     }
 
     private void FixedUpdate()
     {
         CheckIfNotFallen();
-        
-        CheckIfCoffeeActive();
-
-        CheckIfShieldActive();
 
         Move();
-    }
-    
-    private void CheckIfCoffeeActive()
-    {
-        if (coffeeTimer == 0)
-        {
-            // time for coffee effect is over, default speed is restored
-            SetSpeed(3, 5);
-        }
-        if (coffeeTimer > 0)
-        {
-            coffeeTimer--;
-        }
     }
 
     public void AddHeart()
@@ -176,11 +146,6 @@ public class Player : MonoBehaviour
             Debug.Log($"Heart Removed, remaining = {currentHearts}");
             heartDelegate(currentHearts);
         }
-    }
-
-    public void SetCoffeeTimer()
-    {
-        coffeeTimer = (int) (500 * Settings.CoffeeTimeMultiplier);
     }
 
     public void UpdateState()

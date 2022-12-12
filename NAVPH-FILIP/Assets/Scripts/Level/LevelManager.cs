@@ -51,6 +51,9 @@ public class LevelManager : MonoBehaviour
         
         // this is an observer of shield system
         player.shieldDelegate += OnShieldActivated;
+        
+        // this is an observer of coffee system
+        player.coffeeDelegate += OnCoffeeActivated;
 
         // this is an observer of finish system
         finish.isFinishedDelegate += OnFinished;
@@ -89,7 +92,29 @@ public class LevelManager : MonoBehaviour
     {
         if (isActivated)
         {
-            player.shieldTimer = 200;
+            ShieldTimer timer = player.GetComponent<ShieldTimer>();
+            timer.enabled = true;
+            
+            player.shieldImage.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            player.shieldImage.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+    
+    private void OnCoffeeActivated(bool isActivated)
+    {
+        if (isActivated)
+        {
+            CoffeeTimer timer = player.GetComponent<CoffeeTimer>();
+            timer.enabled = true;
+            
+            player.SetSpeed(1.2f * 3f, 1.2f * 5f);
+        }
+        else
+        {
+            player.SetSpeed(3, 5);
         }
     }
 }

@@ -7,8 +7,8 @@ public class Coffee : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
-            player.SetSpeed(1.2f * 3f, 1.2f * 5f);
-            player.SetCoffeeTimer();
+            player.coffeeActive = true;
+            player.coffeeDelegate(player.coffeeActive);
             Destroy(gameObject);
         }
     }
