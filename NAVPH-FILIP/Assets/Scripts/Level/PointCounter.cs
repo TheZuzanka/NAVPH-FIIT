@@ -36,4 +36,9 @@ public class PointCounter : MonoBehaviour
             achievementsManager.SetScoreAchievement();
         }
     }
+
+    public int GetPoints()
+    {
+        return points;
+    }
 }

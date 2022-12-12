@@ -8,13 +8,12 @@ using UnityEngine.UI;
 public class MarkDialog : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI markText;
-    [SerializeField] Canvas canvas;
 
-    private GameObject _boss;
+    private Boss _boss;
 
     void Start()
     {
-        _boss = GameObject.FindGameObjectWithTag("Boss");
+        _boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
     }
 
     public void DisplayMark(string mark)
@@ -25,15 +24,17 @@ public class MarkDialog : MonoBehaviour
     // Continue fighting the boss to get a better mark
     public void Continue()
     {
-        canvas.enabled = false;
+        Destroy(gameObject);
         Time.timeScale = 1.0f;
     }
 
     // End the battle with boss with just obtained mark
     public void End()
     {
-        canvas.enabled = false;
+        Destroy(gameObject);
         Time.timeScale = 1.0f;
-        Destroy(_boss);
+        
+        _boss.SetFinalMark();
+        Destroy(_boss.gameObject);
     }
 }

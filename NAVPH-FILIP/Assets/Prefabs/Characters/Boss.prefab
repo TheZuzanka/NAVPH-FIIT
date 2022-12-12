@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostileDistance: 10
+  markDialog: {fileID: -3922902954134970531, guid: bc83a3ca4fe01c24caf5be740b7b7545, type: 3}
   MarksList:
   - {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
   - {fileID: 456213616076204580, guid: e07ac7a0c542a07468bfea838d943ef6, type: 3}

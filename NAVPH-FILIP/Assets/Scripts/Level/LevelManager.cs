@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Finish finish;
     [SerializeField] private AchievementsManager achievementsManager;
+    [SerializeField] private PointCounter pointCounter;
+    [SerializeField] private FinalScorePanel finalScorePanel;
 
     // public = player sets self as reference when spawned
     public List<Enemy> enemies;
@@ -79,8 +81,15 @@ public class LevelManager : MonoBehaviour
         if (isFinished)
         {
             achievementsManager.achievementsDelegate(true);
-            ReturnToMainMenu();
+            OpenFinalScorePanel();
+            Time.timeScale = 0.0f; // Stop time
         }
+    }
+
+    private void OpenFinalScorePanel()
+    {
+        FinalScorePanel finalScorePanelInstance = Instantiate(finalScorePanel);
+        finalScorePanelInstance.DisplayScore(boss.GetFinalMark(), pointCounter.GetPoints());
     }
 
     public void ReturnToMainMenu()

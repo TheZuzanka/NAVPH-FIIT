@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     private Player _player;
     [SerializeField] float hostileDistance = 10.0f;
 
-    private GameObject _markDialog;
+    [SerializeField] MarkDialog markDialog;
 
     [SerializeField]  List<GameObject> MarksList;
 
@@ -23,10 +23,11 @@ public class Boss : MonoBehaviour
 
     private string[] marks = new string[] { "FX", "E", "D", "C", "B", "A" };
     private int currentNonFXMarkIndex = 1;
+    private string finalMark = "FX";
 
     void Start()
     {
-        _markDialog = GameObject.FindWithTag("MarkDialog");
+
     }
 
     public void SetPlayer(Player player)
@@ -88,8 +89,10 @@ public class Boss : MonoBehaviour
     // or wants to continue playing for better mark
     private void DisplayDialog(string mark)
     {
-        _markDialog.GetComponent<Canvas>().enabled = true;
-        _markDialog.GetComponent<MarkDialog>().DisplayMark(mark);
+        //_markDialog.GetComponent<Canvas>().enabled = true;
+        MarkDialog markDialogInstance = Instantiate(markDialog);
+        markDialogInstance.DisplayMark(mark);
+        //_markDialog.GetComponent<MarkDialog>().DisplayMark(mark);
         Time.timeScale = 0.0f;
     }
 
@@ -105,8 +108,22 @@ public class Boss : MonoBehaviour
         // Destroy Boss object if player catches A
         else 
         {
+            currentNonFXMarkIndex++;
+            SetFinalMark();
+            
             Destroy(gameObject);
         }
     }
 
+    // Set final mark which will be displayed on panel with final score
+    public void SetFinalMark()
+    {
+        finalMark = marks[currentNonFXMarkIndex - 1];
+    }
+
+    // Get final mark which will be displayed on panel with final score
+    public string GetFinalMark()
+    {
+        return finalMark;
+    }
 }

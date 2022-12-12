@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
 
         if (!shieldActive)
         {
-            currentHearts -= 1;
+            //currentHearts -= 1;
             Debug.Log($"Heart Removed, remaining = {currentHearts}");
             heartDelegate(currentHearts);
         }
