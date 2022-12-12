@@ -12,6 +12,7 @@ public class SettingsController : MonoBehaviour
 
     private enum Attribute
     {
+        None,
         Fitness,
         Logical,
         Sweetheart,
@@ -29,7 +30,7 @@ public class SettingsController : MonoBehaviour
 
         if (Settings.SelectedTrait != -1)
         {
-            GameObject buttonsContainer = this.transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
+            GameObject buttonsContainer = transform.Find("Attributes ScrollView/Viewport/Content").gameObject;
             Button selectedButton = buttonsContainer.transform.GetChild(Settings.SelectedTrait).gameObject
                 .GetComponent<Button>();
             _selectedAttributeButton = selectedButton;
@@ -38,7 +39,7 @@ public class SettingsController : MonoBehaviour
 
         if (Settings.SelectedPerson != -1)
         {
-            GameObject buttonsContainer = this.transform.Find("Main Panel").gameObject;
+            GameObject buttonsContainer = transform.Find("Main Panel").gameObject;
             Button selectedButton = buttonsContainer.transform.GetChild(Settings.SelectedPerson).gameObject
                 .GetComponent<Button>();
             _selectedPersonButton = selectedButton;
@@ -56,7 +57,7 @@ public class SettingsController : MonoBehaviour
 
     public void HideTooltip(Button button)
     {
-        // this method is called when no hover over tooltip (event trigger - Pointer xit)
+        // this method is called when no hover over tooltip (event trigger - Pointer exit)
 
         GameObject tooltip = button.transform.Find("Image/Tooltip").gameObject;
         tooltip.SetActive(false);
@@ -159,6 +160,8 @@ public class SettingsController : MonoBehaviour
                 break;
             case Attribute.Sweetheart:
                 AddExtraHeart();
+                break;
+            case Attribute.None:
                 break;
         }
 
