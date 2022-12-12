@@ -89,7 +89,8 @@ public class LevelManager : MonoBehaviour
     {
         if (isActivated)
         {
-            player.shieldTimer = 200;
+            ShieldTimer timer = player.GetComponent<ShieldTimer>();
+            timer.enabled = true;
         }
     }
 }

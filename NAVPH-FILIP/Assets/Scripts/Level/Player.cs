@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
         
         CheckIfCoffeeActive();
 
-        CheckIfShieldActive();
+        //CheckIfShieldActive();
 
         Move();
     }
