@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         score = 0;
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        SetSpeed(3.5f, 6f);
+        SetSpeed(speed.x * Settings.SpeedMultiplier, speed.y * Settings.SpeedMultiplier);
         SetPlayerAsReference();
     }
 
@@ -114,8 +114,7 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(x * Settings.SpeedMultiplier,
-            y * Settings.SpeedMultiplier);
+        speed = new(x, y);
     }
 
     public Vector2 GetSpeed()
