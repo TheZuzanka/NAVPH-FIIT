@@ -6,7 +6,8 @@ using System;
 public class Boss : MonoBehaviour
 {
     private Player _player;
-    [SerializeField] float hostileDistance = 10.0f;
+    // If player crosses this boundary, Boss starts throwing the marks
+    [SerializeField] Transform throwingBoundary;
 
     [SerializeField] MarkDialog markDialog;
 
@@ -62,9 +63,9 @@ public class Boss : MonoBehaviour
     void Update()
     {
         float distanceFromPlayer = Vector3.Distance(_player.transform.position, transform.position);
-        // Create new FX/Non FX mark if player is in hostileDistance and time set in fxSpawnInterval/otherMarkSpawnInterval
+        // Create new FX/Non FX mark if player's x coor. is >= than throwingBoundary's x coor and time set in fxSpawnInterval/otherMarkSpawnInterval
         // has passed since previous FX/Non FX mark spawn
-        if (distanceFromPlayer <= hostileDistance)
+        if (_player.transform.position.x >= throwingBoundary.position.x)
         {
             // Throw FX
             if (fxTimePassed >= fxSpawnInterval)
