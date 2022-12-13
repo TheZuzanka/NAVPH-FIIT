@@ -27,7 +27,7 @@ public class FXMark : MonoBehaviour
         {
             Player playerScript = collision.gameObject.GetComponent<Player>();
             playerScript.RemoveHeart();
-        
+
             Destroy(gameObject);
         }
     }
