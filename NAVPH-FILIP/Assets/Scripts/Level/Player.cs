@@ -3,14 +3,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
-    [SerializeField] private Vector2 speed = new Vector2(3.5f,6.0f);
+    [SerializeField] private Vector2 speed;
     [SerializeField] private int currentHearts;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
     [SerializeField] private Sprite[] images;
     [SerializeField] private SpriteRenderer currentImage;
-
-    private Vector2 defaultSpeed;
 
     public int score;
     public bool shieldActive;
@@ -68,8 +66,7 @@ public class Player : MonoBehaviour
         score = 0;
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        //SetSpeed(3, 5);
-        defaultSpeed = speed;
+        SetSpeed(speed.x * Settings.SpeedMultiplier, speed.y * Settings.SpeedMultiplier);
         SetPlayerAsReference();
     }
 
@@ -117,18 +114,12 @@ public class Player : MonoBehaviour
     {
         // speed depends on whether the player has the fitness trait selected
         
-        speed = new(x * Settings.SpeedMultiplier,
-            y * Settings.SpeedMultiplier);
+        speed = new(x, y);
     }
 
     public Vector2 GetSpeed()
     {
         return speed;
-    }
-
-    public Vector2 GetDefaultSpeed()
-    {
-        return defaultSpeed;
     }
 
     private void FixedUpdate()
