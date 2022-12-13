@@ -17,4 +17,8 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Achievements");
     }
+    
+    public void ExitGame() {
+        Application.Quit();
+    }
 }
