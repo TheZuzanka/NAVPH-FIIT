@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f3c94d40fb1a745a2a7932bfce5629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostileDistance: 10
   throwingBoundary: {fileID: 1953196450186682115}
   markDialog: {fileID: -3922902954134970531, guid: bc83a3ca4fe01c24caf5be740b7b7545, type: 3}
   MarksList:
@@ -166,7 +165,7 @@ MonoBehaviour:
   - {fileID: 456213616076204580, guid: ecf77a57f1d5cc644aa62e8dfede883c, type: 3}
   - {fileID: 456213616076204580, guid: 225082f1a939bf845bb5bde22ef3d803, type: 3}
   - {fileID: 456213616076204580, guid: 9655d6cbab551a74da1614e262e328b5, type: 3}
-  fxThrowForce: 10
+  fxThrowForce: 7
   otherMarkThrowForce: 5
-  fxSpawnInterval: 2
+  fxSpawnInterval: 3
   otherMarkSpawnInterval: 5

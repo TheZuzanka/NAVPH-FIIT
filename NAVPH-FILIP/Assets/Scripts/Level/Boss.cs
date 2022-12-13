@@ -62,7 +62,6 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distanceFromPlayer = Vector3.Distance(_player.transform.position, transform.position);
         // Create new FX/Non FX mark if player's x coor. is >= than throwingBoundary's x coor and time set in fxSpawnInterval/otherMarkSpawnInterval
         // has passed since previous FX/Non FX mark spawn
         if (_player.transform.position.x >= throwingBoundary.position.x)

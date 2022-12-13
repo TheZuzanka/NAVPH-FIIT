@@ -476,9 +476,9 @@ MonoBehaviour:
   leftBoundary: {fileID: 5778937197928883764}
   rightBoundary: {fileID: 7216563972046764817}
   hostileDistance: 10
-  enemySpeed: 1.5
+  enemySpeed: 2
   FX: {fileID: 456213616076204580, guid: 50047424022f3f34fb6f6175915ddd97, type: 3}
-  throwForce: 10
+  throwForce: 7
   spawnInterval: 3
 --- !u!1 &3327444970514424669
 GameObject:

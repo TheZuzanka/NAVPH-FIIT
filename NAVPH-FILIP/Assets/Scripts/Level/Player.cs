@@ -3,12 +3,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
-    [SerializeField] private Vector2 speed;
+    [SerializeField] private Vector2 speed = new Vector2(3.5f,6.0f);
     [SerializeField] private int currentHearts;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private float touchTheGroundThreshold = 0.35f;
     [SerializeField] private Sprite[] images;
     [SerializeField] private SpriteRenderer currentImage;
+
+    private Vector2 defaultSpeed;
 
     public int score;
     public bool shieldActive;
@@ -66,7 +68,8 @@ public class Player : MonoBehaviour
         score = 0;
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        SetSpeed(3, 5);
+        //SetSpeed(3, 5);
+        defaultSpeed = speed;
         SetPlayerAsReference();
     }
 
@@ -118,6 +121,16 @@ public class Player : MonoBehaviour
             y * Settings.SpeedMultiplier);
     }
 
+    public Vector2 GetSpeed()
+    {
+        return speed;
+    }
+
+    public Vector2 GetDefaultSpeed()
+    {
+        return defaultSpeed;
+    }
+
     private void FixedUpdate()
     {
         CheckIfNotFallen();
@@ -139,7 +152,6 @@ public class Player : MonoBehaviour
     public void RemoveHeart()
     {
         // public = when player collects FX this method is called
-
         if (!shieldActive)
         {
             currentHearts -= 1;

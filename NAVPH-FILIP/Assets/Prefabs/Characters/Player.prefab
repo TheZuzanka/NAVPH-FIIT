@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22ef4c4bf27d2c4badedc8a1276a0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 3, y: 5}
+  speed: {x: 3.5, y: 6.5}
   currentHearts: 0
   levelManager: {fileID: 0}
   touchTheGroundThreshold: 1.55

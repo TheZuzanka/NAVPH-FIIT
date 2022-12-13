@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
         
         achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
 
-        player.SetSpeed(3, 5);
+        //player.SetSpeed(3, 5);
         score.text = "Score: " + player.score;
 
         player.SetLevelManager(this);
@@ -118,12 +118,14 @@ public class LevelManager : MonoBehaviour
         {
             CoffeeTimer timer = player.GetComponent<CoffeeTimer>();
             timer.enabled = true;
-            
-            player.SetSpeed(1.2f * 3f, 1.2f * 5f);
+
+            Vector2 playerSpeed = player.GetSpeed();
+            player.SetSpeed(1.2f * playerSpeed.x, 1.2f * playerSpeed.y);
         }
         else
         {
-            player.SetSpeed(3, 5);
+            Vector2 playerSpeed = player.GetDefaultSpeed();
+            player.SetSpeed(playerSpeed.x, playerSpeed.y);
         }
     }
 }
