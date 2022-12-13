@@ -5,7 +5,7 @@ public class CoffeeTimer : MonoBehaviour
     [SerializeField] private int timer;
     void OnEnable()
     {
-        timer = (int) (500 * Settings.CoffeeTimeMultiplier);
+        timer = (int) (GameLogicValues.CoffeeTimerValue * Settings.CoffeeTimeMultiplier);
     }
     
     void Update()

@@ -27,17 +27,17 @@ public class LevelManager : MonoBehaviour
         if (screenPositionOfPlayer.x < 0)
         {
             // player is off the left boundary
-            
+
             mainCamera.transform.position -= new Vector3(20, 0, 0);
-        } 
+        }
         else if (screenPositionOfPlayer.x > Screen.width)
         {
             // player is off the right boundary
-            
+
             mainCamera.transform.position += new Vector3(20, 0, 0);
         }
     }
-    
+
 
     public void Update()
     {
@@ -47,22 +47,21 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
-        
+
         // this is an observer of health system
         player.heartDelegate += OnHeartsChanged;
-        
+
         // this is an observer of shield system
         player.shieldDelegate += OnShieldActivated;
-        
+
         // this is an observer of coffee system
         player.coffeeDelegate += OnCoffeeActivated;
 
         // this is an observer of finish system
         finish.isFinishedDelegate += OnFinished;
-        
-        achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
 
-        //player.SetSpeed(3, 5);
+        achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
+        
         score.text = "Score: " + player.score;
 
         player.SetLevelManager(this);
@@ -103,7 +102,7 @@ public class LevelManager : MonoBehaviour
         {
             ShieldTimer timer = player.GetComponent<ShieldTimer>();
             timer.enabled = true;
-            
+
             player.shieldImage.GetComponent<SpriteRenderer>().enabled = true;
         }
         else
@@ -111,7 +110,7 @@ public class LevelManager : MonoBehaviour
             player.shieldImage.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
-    
+
     private void OnCoffeeActivated(bool isActivated)
     {
         if (isActivated)
@@ -120,12 +119,14 @@ public class LevelManager : MonoBehaviour
             timer.enabled = true;
 
             Vector2 playerSpeed = player.GetSpeed();
-            player.SetSpeed(1.2f * playerSpeed.x, 1.2f * playerSpeed.y);
+            player.SetSpeed(GameLogicValues.CoffeeEffectMultiplier * playerSpeed.x,
+                GameLogicValues.CoffeeEffectMultiplier * playerSpeed.y);
         }
         else
         {
             Vector2 playerSpeed = player.GetSpeed();
-            player.SetSpeed(playerSpeed.x/1.2f, playerSpeed.y/1.2f);
+            player.SetSpeed(playerSpeed.x / GameLogicValues.CoffeeEffectMultiplier,
+                playerSpeed.y / GameLogicValues.CoffeeEffectMultiplier);
         }
     }
 }

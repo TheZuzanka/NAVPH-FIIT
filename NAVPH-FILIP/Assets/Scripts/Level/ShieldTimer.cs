@@ -5,7 +5,7 @@ public class ShieldTimer : MonoBehaviour
     [SerializeField] private int timer;
     void OnEnable()
     {
-        timer = 500;
+        timer = GameLogicValues.ShieldTimerValue;
     }
     
     void Update()
