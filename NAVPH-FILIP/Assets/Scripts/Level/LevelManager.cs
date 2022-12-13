@@ -124,8 +124,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Vector2 playerSpeed = player.GetDefaultSpeed();
-            player.SetSpeed(playerSpeed.x, playerSpeed.y);
+            Vector2 playerSpeed = player.GetSpeed();
+            player.SetSpeed(playerSpeed.x/1.2f, playerSpeed.y/1.2f);
         }
     }
 }
