@@ -8,7 +8,12 @@ public static class Achievements
     {
         {"CompletedAsZuzka", false},
         {"CompletedAsFilip", false},
-        {"CompleteWithScore", false}
+        {"CompleteWithScore", false},
+        {"CompletedWithA", false},
+        {"CompletedWithB", false},
+        {"CompletedWithC", false},
+        {"CompletedWithD", false},
+        {"CompletedWithE", false},
     };
     
     public static int PointAchievementThreshold = 10;
