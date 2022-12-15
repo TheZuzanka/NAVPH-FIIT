@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
         finish.isFinishedDelegate += OnFinished;
 
         achievementsManager.SetFinishedPlayerAchievement(Settings.SelectedPerson);
-        
+
         score.text = "Score: " + player.score;
 
         player.SetLevelManager(this);
@@ -79,7 +79,9 @@ public class LevelManager : MonoBehaviour
     {
         if (isFinished)
         {
+            achievementsManager.FinishWithMark(boss.GetFinalMark());
             achievementsManager.achievementsDelegate(true);
+
             OpenFinalScorePanel();
             Time.timeScale = 0.0f; // Stop time
         }
