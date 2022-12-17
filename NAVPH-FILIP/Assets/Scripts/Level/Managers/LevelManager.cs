@@ -24,17 +24,20 @@ public class LevelManager : MonoBehaviour
     private void MoveCameraWhenPlayerNotInViewport()
     {
         Vector3 screenPositionOfPlayer = mainCamera.WorldToScreenPoint(player.transform.position);
+        float height = 2f * mainCamera.orthographicSize;
+        float width = height * mainCamera.aspect;
+        
         if (screenPositionOfPlayer.x < 0)
         {
             // player is off the left boundary
 
-            mainCamera.transform.position -= new Vector3(20, 0, 0);
+            mainCamera.transform.position -= new Vector3(width, 0, 0);
         }
         else if (screenPositionOfPlayer.x > Screen.width)
         {
             // player is off the right boundary
 
-            mainCamera.transform.position += new Vector3(20, 0, 0);
+            mainCamera.transform.position += new Vector3(width, 0, 0);
         }
     }
 
