@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         if (Settings.SelectedPerson == 1)
         {
             BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-            boxCollider.size = new Vector2(2,3);
+            boxCollider.size = new Vector2(1.5f,3);
 
             shieldImage.transform.localScale = new Vector3(5f, 1.6f, 1);
         }
