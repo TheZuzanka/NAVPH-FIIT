@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -9,9 +7,7 @@ public class FinalScorePanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI markText;
     [SerializeField] TextMeshProUGUI baseScoreText;
     [SerializeField] TextMeshProUGUI finalScoreText;
-    [SerializeField] float[] markCoefficients;
-   
-    // Close the panel
+
     public void Close()
     {
         Destroy(gameObject);
@@ -23,19 +19,9 @@ public class FinalScorePanel : MonoBehaviour
     public void DisplayScore(string mark, int points)
     {
         markText.SetText(mark);
-        baseScoreText.SetText("Base Points: "+points.ToString());
+        baseScoreText.SetText("Base Points: " + points);
 
-
-        Dictionary<string,float> markCoefficientsDict = new Dictionary<string, float>
-        {
-            { "E", markCoefficients[0] },
-            { "D", markCoefficients[1] },
-            { "C", markCoefficients[2] },
-            { "B", markCoefficients[3] },
-            { "A", markCoefficients[4] }
-        };
-
-        float final_points = points * markCoefficientsDict[mark];
-        finalScoreText.SetText("Final Points: " + final_points.ToString());
+        float finalPoints = points * GameLogicValues.MarkCoefficients[mark];
+        finalScoreText.SetText("Final Points: " + finalPoints);
     }
 }
