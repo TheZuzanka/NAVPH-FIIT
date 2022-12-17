@@ -11279,7 +11279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1160136321102312243, guid: 30eb922f4a971464189f28b69c683b2f, type: 3}
   score: {fileID: 1942233285}
-  levelContainer: {fileID: 0}
+  levelContainer: {fileID: 1983318425}
   mainCamera: {fileID: 519420031}
   finish: {fileID: 97206440533825145}
   achievementsManager: {fileID: 1197514802}
