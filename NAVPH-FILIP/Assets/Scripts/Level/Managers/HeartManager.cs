@@ -7,7 +7,7 @@ namespace Level
 {
     public class HeartManager : MonoBehaviour
     {
-        [SerializeField] private List<FullHeart> heartObjects = new();
+        [SerializeField] private List<GameObject> heartObjects = new();
         private Player _player;
 
         private void Start()
