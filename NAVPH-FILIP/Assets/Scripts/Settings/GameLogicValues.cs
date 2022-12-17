@@ -6,6 +6,7 @@ public static class GameLogicValues
     public static int CoffeeTimerValue = 500;
     public static int ShieldTimerValue = 500;
     public static float MarkExistingTime = 5f;
+    public static float FxExistingTime = 2f;
     
     public static readonly Dictionary<string, float> MarkCoefficients = new()
     {
