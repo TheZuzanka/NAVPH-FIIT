@@ -2,58 +2,53 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private float _leftBoundaryX;
+    private float _rightBoundaryX;
+    private Player _player;
+    private float _timePassed;
+    
     // Boundaries beyond which enemy cannot move
     [SerializeField] Transform leftBoundary;
-    private float leftBoundaryX;
     [SerializeField] Transform rightBoundary;
-    private float rightBoundaryX;
-
-    private Player player;
     [SerializeField] float hostileDistance = 10.0f;
-    [SerializeField] float enemySpeed = 2.0f;
-
+    [SerializeField] float speed = 2.0f;
     [SerializeField] GameObject FX;
     [SerializeField] float throwForce = 20.0f;
-
     [SerializeField] float spawnInterval;
-    private float timePassed = 0.0f;
+    
 
     void Start()
     {
-        leftBoundaryX = leftBoundary.position.x;
-        rightBoundaryX = rightBoundary.position.x;
-        spawnInterval = 3.0f * Settings.FxTimeIntervalMultiplier;
+        _leftBoundaryX = leftBoundary.position.x;
+        _rightBoundaryX = rightBoundary.position.x;
+        spawnInterval *= Settings.FxTimeIntervalMultiplier;
     }
 
     public void SetPlayer(Player player)
     {
-        this.player = player;
+        _player = player;
     }
-
-    // Move towards player
-    private void Move()
+    
+    private void MoveTowardsPlayer()
     {
-        float currentPosistionX = transform.position.x;
-
-
-
+        float currentPositionX = transform.position.x;
         float moveX = Vector2.MoveTowards(transform.position,
-                player.transform.position, enemySpeed*Time.deltaTime).x;
+                _player.transform.position, speed*Time.deltaTime).x;
 
         // Inside boundaries
-        if (moveX > leftBoundaryX && moveX < rightBoundaryX)
+        if (moveX > _leftBoundaryX && moveX < _rightBoundaryX)
         {
             transform.position = new Vector2(moveX, transform.position.y);
         }
 
-        // Move right from left boudary
-        else if (currentPosistionX <= leftBoundaryX && (moveX > currentPosistionX))
+        // Move right from left boundary
+        else if (currentPositionX <= _leftBoundaryX && moveX > currentPositionX)
         {
             transform.position = new Vector2(moveX, transform.position.y);
         }
 
-        // Move left from right boudary
-        else if (currentPosistionX >= rightBoundaryX && (moveX < currentPosistionX))
+        // Move left from right boundary
+        else if (currentPositionX >= _rightBoundaryX && moveX < currentPositionX)
         {
             transform.position = new Vector2(moveX, transform.position.y);
         }
@@ -63,7 +58,7 @@ public class Enemy : MonoBehaviour
     {
         // Set vector that will point FX object towards player
         Vector3 fxPosition = transform.position;
-        Vector3 fromEnemyToPlayer = player.transform.position - fxPosition;
+        Vector3 fromEnemyToPlayer = _player.transform.position - fxPosition;
         fromEnemyToPlayer.Normalize();
 
         GameObject newFX = Instantiate(FX, fxPosition, Quaternion.identity);
@@ -74,21 +69,21 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
+        float distanceFromPlayer = Vector3.Distance(_player.transform.position, transform.position);
 
         // Create new FX object if player is in hostileDistance and time set in spawnInterval
         // has passed since previous FX object spawn
         if (distanceFromPlayer <= hostileDistance)
         {
-            Move();
+            MoveTowardsPlayer();
   
-            if (timePassed >= spawnInterval)
+            if (_timePassed >= spawnInterval)
             {
                 ThrowFX();
-                timePassed = 0.0f;
+                _timePassed = 0.0f;
             }
 
-            timePassed += Time.deltaTime;
+            _timePassed += Time.deltaTime;
         }
     }
 
