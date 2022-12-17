@@ -16,7 +16,7 @@ public class AchiemevemtsContoller : MonoBehaviour
     {
         foreach (var element in dynamicDescriptionsElements)
         {
-            var dynamicDescriptionElement = element.GetComponent<DynamicDescription>();
+            var dynamicDescriptionElement = element.GetComponent<IDynamicDescription>();
 
             dynamicDescriptionElement?.SetDynamicDescription();
         }

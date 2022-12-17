@@ -1,4 +1,4 @@
-﻿public interface DynamicDescription
+﻿public interface IDynamicDescription
 {
     public void SetDynamicDescription();
 }
