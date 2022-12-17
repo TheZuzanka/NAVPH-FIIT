@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
-        player = Instantiate(player, new Vector2(-11, -3), Quaternion.identity, levelContainer);
+        player = Instantiate(player, new Vector2(-5, -3), Quaternion.identity, levelContainer);
 
         // this is an observer of health system
         player.heartDelegate += OnHeartsChanged;
