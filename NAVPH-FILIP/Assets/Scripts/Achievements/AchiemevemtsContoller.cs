@@ -10,6 +10,17 @@ public class AchiemevemtsContoller : MonoBehaviour
     // this class controls achievement window
 
     [SerializeField] private List<Image> imageElements;
+    [SerializeField] private List<GameObject> dynamicDescriptionsElements;
+
+    private void SetDynamicDescriptions()
+    {
+        foreach (var element in dynamicDescriptionsElements)
+        {
+            var dynamicDescriptionElement = element.GetComponent<DynamicDescription>();
+
+            dynamicDescriptionElement?.SetDynamicDescription();
+        }
+    }
 
     private void SetCompleted()
     {
@@ -33,6 +44,7 @@ public class AchiemevemtsContoller : MonoBehaviour
 
     private void Start()
     {
+        SetDynamicDescriptions();
         SetCompleted();
     }
 }
