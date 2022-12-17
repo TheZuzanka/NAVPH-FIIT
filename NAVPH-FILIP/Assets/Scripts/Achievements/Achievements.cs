@@ -16,5 +16,5 @@ public static class Achievements
         {"CompletedWithE", false},
     };
     
-    public static int PointAchievementThreshold = 10;
+    public static int PointAchievementThreshold = 90;
 }
