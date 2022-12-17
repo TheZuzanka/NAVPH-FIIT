@@ -31,27 +31,29 @@ public class Enemy : MonoBehaviour
     
     private void MoveTowardsPlayer()
     {
-        float currentPositionX = transform.position.x;
-        float moveX = Vector2.MoveTowards(transform.position,
+        Vector3 myPosition = transform.position;
+        float moveX = Vector2.MoveTowards(myPosition,
                 _player.transform.position, speed*Time.deltaTime).x;
 
         // Inside boundaries
         if (moveX > _leftBoundaryX && moveX < _rightBoundaryX)
         {
-            transform.position = new Vector2(moveX, transform.position.y);
+            myPosition = new Vector2(moveX, transform.position.y);
         }
 
         // Move right from left boundary
-        else if (currentPositionX <= _leftBoundaryX && moveX > currentPositionX)
+        else if (myPosition.x <= _leftBoundaryX && moveX > myPosition.x)
         {
-            transform.position = new Vector2(moveX, transform.position.y);
+            myPosition = new Vector2(moveX, transform.position.y);
         }
 
         // Move left from right boundary
-        else if (currentPositionX >= _rightBoundaryX && moveX < currentPositionX)
+        else if (myPosition.x >= _rightBoundaryX && moveX < myPosition.x)
         {
-            transform.position = new Vector2(moveX, transform.position.y);
+            myPosition = new Vector2(moveX, transform.position.y);
         }
+
+        transform.position = myPosition;
     }
 
     private void ThrowFX()
