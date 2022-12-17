@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -6,30 +5,22 @@ using System;
 public class Boss : MonoBehaviour
 {
     private Player _player;
+    private float _fxTimePassed;
+    private float _otherMarkTimePassed;
+    private string[] marks = new string[] { "FX", "E", "D", "C", "B", "A" };
+    private int _currentNonFXMarkIndex = 1;
+    private string _finalMark = "FX";
+    
     // If player crosses this boundary, Boss starts throwing the marks
     [SerializeField] Transform throwingBoundary;
-
     [SerializeField] MarkDialog markDialog;
 
     [SerializeField]  List<GameObject> MarksList;
 
     [SerializeField] float fxThrowForce = 10.0f;
     [SerializeField] float otherMarkThrowForce = 5.0f;
-
     [SerializeField] float fxSpawnInterval = 2.0f;
     [SerializeField] float otherMarkSpawnInterval = 5.0f;
-    private float fxTimePassed = 0.0f;
-    private float otherMarkTimePassed = 0.0f;
-
-
-    private string[] marks = new string[] { "FX", "E", "D", "C", "B", "A" };
-    private int currentNonFXMarkIndex = 1;
-    private string finalMark = "FX";
-
-    void Start()
-    {
-
-    }
 
     public void SetPlayer(Player player)
     {
@@ -67,21 +58,21 @@ public class Boss : MonoBehaviour
         if (_player.transform.position.x >= throwingBoundary.position.x)
         {
             // Throw FX
-            if (fxTimePassed >= fxSpawnInterval)
+            if (_fxTimePassed >= fxSpawnInterval)
             {
                 ThrowMark("FX",fxThrowForce);
-                fxTimePassed = 0.0f;
+                _fxTimePassed = 0.0f;
             }
 
             //Throw Non FX mark
-            if (otherMarkTimePassed >= otherMarkSpawnInterval)
+            if (_otherMarkTimePassed >= otherMarkSpawnInterval)
             {
-                ThrowMark(marks[currentNonFXMarkIndex], otherMarkThrowForce);
-                otherMarkTimePassed = 0.0f;
+                ThrowMark(marks[_currentNonFXMarkIndex], otherMarkThrowForce);
+                _otherMarkTimePassed = 0.0f;
             }
 
-            fxTimePassed += Time.deltaTime;
-            otherMarkTimePassed += Time.deltaTime;
+            _fxTimePassed += Time.deltaTime;
+            _otherMarkTimePassed += Time.deltaTime;
         }
     }
 
@@ -99,16 +90,16 @@ public class Boss : MonoBehaviour
     public void AskAboutMark()
     {
         // Open dialog
-        if (currentNonFXMarkIndex < marks.Length - 1)
+        if (_currentNonFXMarkIndex < marks.Length - 1)
         {
-            DisplayDialog(marks[currentNonFXMarkIndex]);
-            currentNonFXMarkIndex++;
+            DisplayDialog(marks[_currentNonFXMarkIndex]);
+            _currentNonFXMarkIndex++;
         }
 
         // Destroy Boss object if player catches A
         else 
         {
-            currentNonFXMarkIndex++;
+            _currentNonFXMarkIndex++;
             SetFinalMark();
             
             Destroy(gameObject);
@@ -118,12 +109,12 @@ public class Boss : MonoBehaviour
     // Set final mark which will be displayed on panel with final score
     public void SetFinalMark()
     {
-        finalMark = marks[currentNonFXMarkIndex - 1];
+        _finalMark = marks[_currentNonFXMarkIndex - 1];
     }
 
     // Get final mark which will be displayed on panel with final score
     public string GetFinalMark()
     {
-        return finalMark;
+        return _finalMark;
     }
 }
