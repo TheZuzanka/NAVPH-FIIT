@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class FXMark : MonoBehaviour
 {
-    private float timePassed = 0.0f;
+    private float _timePassed;
     [SerializeField] float maxExistTime = 2.0f;
-
-    // Update is called once per frame
+    
     void Update()
     {
         // Destroy FX object if time set in maxExistTime has passed
-        timePassed += Time.deltaTime;
+        _timePassed += Time.deltaTime;
 
-        if (timePassed >= maxExistTime)
+        if (_timePassed >= maxExistTime)
         {
             Destroy(gameObject);
         }
