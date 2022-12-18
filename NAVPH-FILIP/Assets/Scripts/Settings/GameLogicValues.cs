@@ -3,8 +3,8 @@
 public static class GameLogicValues
 {
     public static float CoffeeEffectMultiplier = 1.1f;
-    public static int CoffeeTimerValue = 5500;
-    public static int ShieldTimerValue = 5500;
+    public static int CoffeeTimerValue = 1000;
+    public static int ShieldTimerValue = 1000;
     public static float MarkExistingTime = 5f;
     public static float FxExistingTime = 2f;
     
